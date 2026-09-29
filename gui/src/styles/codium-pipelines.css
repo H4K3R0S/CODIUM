@@ -1,0 +1,404 @@
+/* ==========          CODIUM PIPELINES          ========== */
+/*
+ * Isti ton kao codium-access.css i codium-agents.css: ostre ivice, tamna
+ * podloga, tanke linije, centriran stubac do 1200px. Strana zivi u pametnom
+ * rasporedu oko chata (smart-layout.css), pa okviri stoje u mrezi koja se
+ * sklopi u stubac cim razgovor krene.
+ *
+ * Crvena, zuta i zelena su rezervisane za znacenje u celom domenu — neuspeh,
+ * cekanje, uspeh — pa znacke pokretanja zadrzavaju svoje boje.
+ */
+
+.cpipe-page {
+  --cpipe-surface: rgba(15, 21, 34, 0.6);
+  --cpipe-surface-2: rgba(255, 255, 255, 0.02);
+  --cpipe-border: rgba(148, 163, 184, 0.14);
+  --cpipe-text: #e2e8f0;
+  --cpipe-text-muted: #8b95a8;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 28px 48px;
+}
+
+
+/* ==========          ZAGLAVLJE          ========== */
+
+.cpipe-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cpipe-eyebrow {
+  margin: 0;
+  color: var(--domain-accent);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cpipe-head h1 {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.cpipe-sub {
+  margin: 0;
+  color: var(--cpipe-text-muted);
+  font-size: 0.82rem;
+}
+
+.cpipe-alat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.cpipe-alat label {
+  color: var(--cpipe-text-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cpipe-alat select {
+  padding: 6px 10px;
+  border: 1px solid var(--cpipe-border);
+  border-radius: 0;
+  color: var(--cpipe-text);
+  background: var(--cpipe-surface-2);
+  font: inherit;
+  font-size: 0.8rem;
+}
+
+
+/* ==========          PORUKE          ========== */
+
+.cpipe-error,
+.cpipe-greska {
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  border-radius: 0;
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.08);
+  font-size: 0.8rem;
+}
+
+.cpipe-prazno,
+.cpipe-hint {
+  margin: 0;
+  color: var(--cpipe-text-muted);
+  font-size: 0.78rem;
+}
+
+
+/* ==========          RASPORED          ========== */
+
+.cpipe-grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 300px) 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+/* Definicija i detalj su siroki poslovi — svaki uzima ceo red ispod. */
+.cpipe-grid > .sframe:nth-child(3),
+.cpipe-grid > .sframe:nth-child(4) {
+  grid-column: 1 / -1;
+}
+
+
+/* ==========          PANEL          ========== */
+
+.cpipe-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid var(--cpipe-border);
+  border-radius: 0;
+  background: var(--cpipe-surface);
+}
+
+.cpipe-panel h2 {
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  color: #f1f5f9;
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+/* U skupljenom/preview stanju naslov nosi ljuska okvira. */
+.sframe.is-tucked .cpipe-panel,
+.sframe.is-preview .cpipe-panel {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.sframe.is-preview .cpipe-panel > h2 {
+  display: none;
+}
+
+
+/* ==========          SPISKOVI          ========== */
+
+.cpipe-lista,
+.cpipe-istorija,
+.cpipe-koraci {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cpipe-stavka {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  color: var(--cpipe-text);
+  font-size: 0.82rem;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease;
+}
+
+.cpipe-stavka:hover {
+  border-color: var(--cpipe-border);
+  background: var(--cpipe-surface-2);
+}
+
+.cpipe-stavka.izabrana {
+  outline: none;
+  border-color: var(--domain-accent);
+  background: rgba(var(--domain-accent-rgb), 0.08);
+}
+
+.cpipe-stavka > button {
+  padding: 0;
+  border: 0;
+  color: var(--cpipe-text);
+  background: transparent;
+  font: inherit;
+  font-size: 0.82rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cpipe-stavka > button:first-child {
+  flex: 1;
+  font-weight: 650;
+}
+
+.cpipe-stavka > button:last-child {
+  color: var(--cpipe-text-muted);
+  font-size: 0.72rem;
+}
+
+.cpipe-stavka > button:last-child:hover {
+  color: #f87171;
+}
+
+
+/* ==========          UREDJIVAC DEFINICIJE          ========== */
+
+.cpipe-panel-editor {
+  min-height: 340px;
+}
+
+.cpipe-uredjivac {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-height: 280px;
+}
+
+.cpipe-uredjivac-akcije {
+  display: flex;
+  gap: 8px;
+}
+
+.cpipe-uredjivac-akcije button {
+  padding: 7px 14px;
+  border: 1px solid var(--domain-accent);
+  border-radius: 0;
+  color: var(--domain-accent);
+  background: rgba(var(--domain-accent-rgb), 0.08);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cpipe-uredjivac-akcije button:disabled {
+  border-color: var(--cpipe-border);
+  color: var(--cpipe-text-muted);
+  background: var(--cpipe-surface-2);
+  cursor: not-allowed;
+}
+
+
+/* ==========          ZNACKE I VREME          ========== */
+
+.cpipe-znacka {
+  padding: 1px 7px;
+  border: 1px solid currentColor;
+  border-radius: 0;
+  font-size: 0.68rem;
+}
+
+.cpipe-znacka.success { color: #4ade80; }
+.cpipe-znacka.failed,
+.cpipe-znacka.timeout { color: #f87171; }
+.cpipe-znacka.running { color: #60a5fa; }
+.cpipe-znacka.cancelled,
+.cpipe-znacka.queued,
+.cpipe-znacka.nepoznato { color: var(--cpipe-text-muted); }
+
+.cpipe-trajanje,
+.cpipe-vreme,
+.cpipe-razlog,
+.cpipe-korak-status,
+.cpipe-korak-kod {
+  color: var(--cpipe-text-muted);
+  font-size: 0.72rem;
+}
+
+
+/* ==========          DETALJ POKRETANJA          ========== */
+
+.cpipe-panel-detalj {
+  min-height: 320px;
+}
+
+.cpipe-detalj {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+}
+
+.cpipe-detalj-glava {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cpipe-korak {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  font-size: 0.8rem;
+}
+
+.cpipe-korak:hover {
+  border-color: var(--cpipe-border);
+  background: var(--cpipe-surface-2);
+}
+
+.cpipe-korak-ime {
+  flex: 1;
+  color: var(--cpipe-text);
+}
+
+
+/* ==========          ISPIS (LOG)          ========== */
+
+.cpipe-log-okvir {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 220px;
+}
+
+.cpipe-log {
+  flex: 1;
+  overflow: auto;
+  padding: 10px 12px;
+  border: 1px solid var(--cpipe-border);
+  border-radius: 0;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.74rem;
+  line-height: 1.45;
+  background: rgba(5, 8, 15, 0.75);
+  color: #d7dde8;
+}
+
+.cpipe-log-red { white-space: pre-wrap; word-break: break-word; }
+.cpipe-log-red.stderr { color: #f3b0b0; }
+
+.cpipe-log-traka {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  color: var(--cpipe-text-muted);
+  font-size: 0.72rem;
+}
+
+.cpipe-na-dno {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  padding: 4px 10px;
+  border: 1px solid var(--cpipe-border);
+  border-radius: 0;
+  color: var(--cpipe-text);
+  background: rgba(8, 13, 27, 0.9);
+  font: inherit;
+  font-size: 0.72rem;
+  cursor: pointer;
+}
+
+
+/* ==========          USKO          ========== */
+
+@media (max-width: 900px) {
+  .cpipe-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Boje iz ANSI parsera. */
+.ansi-bold { font-weight: 700; }
+.ansi-black { color: #666; }
+.ansi-red { color: #e06c75; }
+.ansi-green { color: #98c379; }
+.ansi-yellow { color: #e5c07b; }
+.ansi-blue { color: #61afef; }
+.ansi-magenta { color: #c678dd; }
+.ansi-cyan { color: #56b6c2; }
+.ansi-white { color: #eee; }
+.ansi-bright-black { color: #888; }
+.ansi-bright-red { color: #ff7b86; }
+.ansi-bright-green { color: #b5e890; }
+.ansi-bright-yellow { color: #ffd68a; }
+.ansi-bright-blue { color: #82c7ff; }
+.ansi-bright-magenta { color: #e29bf5; }
+.ansi-bright-cyan { color: #6fd5e0; }
+.ansi-bright-white { color: #fff; }

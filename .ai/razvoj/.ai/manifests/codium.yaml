@@ -1,0 +1,15 @@
+module: codium
+path: "core/domains/codium"
+type: domain
+status: skeleton
+public_api:
+files:
+  - path: "core/domains/codium/manifest.py"
+    lines: 13
+dependencies:
+  depends_on:
+    - models
+  used_by: []
+do_not_edit:
+notes:
+  - "Domenski modul (Repository -> Service obrazac)."

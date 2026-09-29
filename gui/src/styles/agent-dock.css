@@ -1,0 +1,51 @@
+/* ==========          AGENT DOCK (dole-centar, globalno)          ========== */
+/*
+ * Jedan dock, fiksiran uz donju ivicu, centriran, ograničene visine. Radni
+ * prostor dobija donji razmak = izmerena visina docka (`--agent-dock-h` na
+ * :root, upisuje `useDockHeightVar`), da sadržaj ne stoji iza chata.
+ */
+.agent-dock {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: min(860px, calc(100% - 24px));
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  /* Ograniči visinu — bez ovoga prazan chat zauzme pola ekrana. */
+  max-height: min(58vh, 460px);
+}
+
+.agent-dock.is-collapsed {
+  height: auto;
+  max-height: none;
+}
+
+/* Poruke skroluju unutar docka umesto da rastu naviše. */
+.agent-dock .chat-scroll {
+  max-height: 32vh;
+}
+
+/* Traka za skupljanje/otvaranje — uvek vidljiva. */
+.agent-dock-toggle {
+  align-self: center;
+  border: none;
+  cursor: pointer;
+  padding: 4px 14px;
+  font: inherit;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  border-radius: 8px 8px 0 0;
+  background: rgba(20, 26, 34, 0.92);
+  color: inherit;
+}
+
+/*
+ * Razmak radnog prostora = visina docka. Specifičnost `.core-layout
+ * .workspace-content` da nadjača osnovni `.workspace-content { padding: … }`
+ * (isti selektor, ali kasnije učitan, inače pobedi).
+ */
+.core-layout .workspace-content {
+  padding-bottom: var(--agent-dock-h, 0px);
+}

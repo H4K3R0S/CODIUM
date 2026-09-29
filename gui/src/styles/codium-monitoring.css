@@ -1,0 +1,361 @@
+/* ==========          CODIUM MONITORING          ========== */
+/*
+ * Isti ton kao codium-access.css i codium-agents.css: ostre ivice, tamna
+ * podloga, tanke linije, centriran stubac do 1200px.
+ *
+ * Grafikoni nose JEDNU seriju, pa nema kategorijske palete ni legende —
+ * naslov iznad grafikona kaze sta se crta. Boja serije je akcent domena;
+ * crvena, zuta i zelena ostaju rezervisane za znacenje (alarm, cekanje,
+ * ispravno) i ne koriste se kao boja podatka.
+ */
+
+.cmon-page {
+  --cmon-surface: rgba(15, 21, 34, 0.6);
+  --cmon-surface-2: rgba(255, 255, 255, 0.02);
+  --cmon-border: rgba(148, 163, 184, 0.14);
+  --cmon-text: #e2e8f0;
+  --cmon-text-muted: #8b95a8;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 28px 48px;
+}
+
+
+/* ==========          ZAGLAVLJE          ========== */
+
+.cmon-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cmon-eyebrow {
+  margin: 0;
+  color: var(--domain-accent);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cmon-head h1 {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.cmon-sub {
+  margin: 0;
+  color: var(--cmon-text-muted);
+  font-size: 0.82rem;
+}
+
+.cmon-alat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+
+/* ==========          PORUKE          ========== */
+
+.cmon-error {
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  border-radius: 0;
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.08);
+  font-size: 0.8rem;
+}
+
+.cmon-hint {
+  margin: 0;
+  color: var(--cmon-text-muted);
+  font-size: 0.76rem;
+}
+
+/* ==========          RASPORED          ========== */
+
+.cmon-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+
+/* ==========          PANEL          ========== */
+
+.cmon-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid var(--cmon-border);
+  border-radius: 0;
+  background: var(--cmon-surface);
+}
+
+.cmon-panel h2 {
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  color: #f1f5f9;
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+/* U skupljenom/preview stanju naslov nosi ljuska okvira. */
+.sframe.is-tucked .cmon-panel,
+.sframe.is-preview .cmon-panel {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.sframe.is-preview .cmon-panel > h2 {
+  display: none;
+}
+
+
+/* ==========          ZID PLOCICA          ========== */
+
+.cmon-zid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.cmon-plocica {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid var(--cmon-border);
+  border-radius: 0;
+  color: var(--cmon-text);
+  background: var(--cmon-surface-2);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease;
+}
+
+.cmon-plocica:hover {
+  border-color: rgba(148, 163, 184, 0.3);
+}
+
+.cmon-plocica.izabrana {
+  border-color: var(--domain-accent);
+  background: rgba(var(--domain-accent-rgb), 0.08);
+}
+
+.cmon-plocica-glava {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cmon-ime {
+  overflow: hidden;
+  font-size: 0.86rem;
+  font-weight: 650;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cmon-brojevi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  color: var(--cmon-text-muted);
+  font-size: 0.7rem;
+}
+
+.cmon-brojevi strong {
+  color: var(--cmon-text);
+  font-weight: 650;
+}
+
+
+/* ==========          ZNACKE          ========== */
+
+.cmon-znacka {
+  flex: 0 0 auto;
+  padding: 1px 7px;
+  border: 1px solid currentColor;
+  border-radius: 0;
+  font-size: 0.66rem;
+}
+
+.cmon-znacka.radi { color: #4ade80; }
+.cmon-znacka.pao,
+.cmon-znacka.alarm { color: #f87171; }
+.cmon-znacka.nemereno { color: var(--cmon-text-muted); }
+
+
+/* ==========          SPARKLINE          ========== */
+
+.cmon-spark {
+  display: block;
+  width: 100%;
+  height: 28px;
+}
+
+.cmon-spark-prazan {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  color: var(--cmon-text-muted);
+  font-size: 0.68rem;
+}
+
+.cmon-spark-linija {
+  fill: none;
+  stroke: var(--domain-accent);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.cmon-spark-ispuna {
+  fill: rgba(var(--domain-accent-rgb), 0.16);
+  stroke: none;
+}
+
+
+/* ==========          GRAFIKON          ========== */
+
+.cmon-detalj {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cmon-izbor {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cmon-tabovi {
+  display: flex;
+  gap: 4px;
+}
+
+.cmon-tabovi button,
+.cmon-alat button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border: 1px solid var(--cmon-border);
+  border-radius: 0;
+  color: var(--cmon-text-muted);
+  background: transparent;
+  font: inherit;
+  font-size: 0.74rem;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.cmon-tabovi button:hover,
+.cmon-alat button:hover {
+  border-color: var(--domain-accent);
+  color: var(--domain-accent);
+}
+
+.cmon-tabovi button.izabran {
+  border-color: var(--domain-accent);
+  color: var(--domain-accent);
+  background: rgba(var(--domain-accent-rgb), 0.08);
+  font-weight: 600;
+}
+
+.cmon-grafikon svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Mreza i osa su recesivni — podaci su ono sto se cita. */
+.cmon-mreza {
+  stroke: rgba(148, 163, 184, 0.12);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.cmon-osa {
+  fill: var(--cmon-text-muted);
+  font-size: 9px;
+  text-anchor: end;
+}
+
+.cmon-osa:not(.cmon-osa-desno) {
+  text-anchor: start;
+}
+
+.cmon-linija {
+  fill: none;
+  stroke: var(--domain-accent);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.cmon-ispuna {
+  fill: rgba(var(--domain-accent-rgb), 0.14);
+  stroke: none;
+}
+
+.cmon-nisan {
+  stroke: rgba(148, 163, 184, 0.5);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+  vector-effect: non-scaling-stroke;
+}
+
+.cmon-tacka {
+  fill: var(--domain-accent);
+  /* Prsten u boji podloge — tacka se ne stapa sa linijom ispod nje. */
+  stroke: #0b0e13;
+  stroke-width: 2;
+}
+
+/* Meta za prelaz misem je siroka koliko razmak, ne koliko tacka. */
+.cmon-meta {
+  fill: transparent;
+}
+
+.cmon-ocitavanje {
+  margin: 0;
+  color: var(--cmon-text-muted);
+  font-size: 0.76rem;
+}
+
+.cmon-ocitavanje strong {
+  color: var(--cmon-text);
+  font-weight: 650;
+}
+
+
+/* ==========          USKO          ========== */
+
+@media (max-width: 700px) {
+  .cmon-zid {
+    grid-template-columns: 1fr;
+  }
+}

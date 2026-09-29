@@ -1,0 +1,378 @@
+/* ==========          SCREENSHOT ALAT          ========== */
+/* Meni (rail/toolbar), overlaji za region i element, i modal pregleda. Tamna
+   paleta uz domenski akcenat (--domain-accent-rgb). */
+
+/* ----------          RAIL WRAPPER (pozicija menija)          ---------- */
+
+.shot-rail {
+  position: relative;
+  display: flex;
+}
+
+/* ----------          MENI          ---------- */
+
+.shot-menu {
+  position: absolute;
+  left: calc(100% + 8px);
+  top: 0;
+  z-index: 60;
+  min-width: 210px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 12px;
+  background: #10151f;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+}
+
+.shot-menu.shot-menu--below {
+  left: auto;
+  right: 0;
+  top: calc(100% + 6px);
+}
+
+.shot-menu-label {
+  margin: 4px 6px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #7c8598;
+}
+
+.shot-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: #d7deea;
+  font: inherit;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 130ms ease, border-color 130ms ease, color 130ms ease;
+}
+
+.shot-menu-item:hover {
+  color: #f8fafc;
+  background: rgba(var(--domain-accent-rgb), 0.16);
+  border-color: rgba(var(--domain-accent-rgb), 0.3);
+}
+
+/* ----------          DASHBOARD PANEL          ---------- */
+
+.shot-dash {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.shot-dash-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.shot-dash-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 14px 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(255, 255, 255, 0.02);
+  color: #d7deea;
+  font: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+  transition: background 130ms ease, border-color 130ms ease, color 130ms ease;
+}
+
+.shot-dash-btn:hover {
+  color: #f8fafc;
+  background: rgba(var(--domain-accent-rgb), 0.16);
+  border-color: rgba(var(--domain-accent-rgb), 0.34);
+}
+
+.shot-dash-editor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(255, 255, 255, 0.02);
+  color: #d7deea;
+  font: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+  transition: background 130ms ease, border-color 130ms ease, color 130ms ease;
+}
+
+.shot-dash-editor:hover {
+  color: #f8fafc;
+  background: rgba(var(--domain-accent-rgb), 0.16);
+  border-color: rgba(var(--domain-accent-rgb), 0.34);
+}
+
+.shot-dash-hint {
+  margin: 0;
+  font-size: 11px;
+  color: #7c8598;
+}
+
+.shot-dash-hint kbd {
+  padding: 1px 6px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  font-family: inherit;
+  font-size: 10.5px;
+}
+
+/* ----------          REGION OVERLAY          ---------- */
+
+.shot-region-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 4000;
+  cursor: crosshair;
+  background: rgba(6, 10, 18, 0.28);
+  user-select: none;
+}
+
+.shot-region-hint,
+.shot-element-hint {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(10, 14, 22, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  color: #e8edf6;
+  font-size: 12.5px;
+  pointer-events: none;
+}
+
+.shot-region-hint kbd,
+.shot-element-hint kbd {
+  padding: 1px 6px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  font-family: inherit;
+  font-size: 11px;
+}
+
+.shot-region-box {
+  position: fixed;
+  border: 1.5px solid rgba(var(--domain-accent-rgb), 0.95);
+  background: rgba(var(--domain-accent-rgb), 0.12);
+  box-shadow: 0 0 0 100vmax rgba(6, 10, 18, 0.28);
+  pointer-events: none;
+}
+
+/* ----------          ELEMENT OVERLAY          ---------- */
+
+.shot-element-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 4000;
+  pointer-events: none;
+}
+
+.shot-element-box {
+  position: fixed;
+  border: 2px solid rgba(var(--domain-accent-rgb), 0.95);
+  background: rgba(var(--domain-accent-rgb), 0.14);
+  border-radius: 3px;
+  pointer-events: none;
+  transition: all 60ms linear;
+}
+
+/* ----------          PREGLED (modal)          ---------- */
+
+.shot-preview-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(4, 7, 12, 0.62);
+  backdrop-filter: blur(3px);
+}
+
+.shot-preview {
+  width: min(640px, 92vw);
+  max-height: 88vh;
+  overflow: auto;
+  padding: 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: #10151f;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+
+.shot-preview-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.shot-preview-head h2 {
+  margin: 0;
+  font-size: 16px;
+  color: #f1f5f9;
+}
+
+.shot-preview-close {
+  display: flex;
+  padding: 6px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #9aa5b6;
+  cursor: pointer;
+}
+
+.shot-preview-close:hover {
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.shot-preview-image {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background:
+    repeating-conic-gradient(#1a2030 0% 25%, #141a26 0% 50%) 50% / 20px 20px;
+}
+
+.shot-preview-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.shot-preview-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0 4px;
+  font-size: 12.5px;
+  color: #aeb7c6;
+}
+
+.shot-clip-ok {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #6ee7a8;
+}
+
+.shot-clip-fail {
+  color: #f0a97a;
+}
+
+.shot-preview-path {
+  margin: 0 0 14px;
+  font-size: 11.5px;
+  color: #7c8598;
+  word-break: break-all;
+}
+
+.shot-preview-error {
+  margin: 8px 0 4px;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(240, 120, 90, 0.12);
+  border: 1px solid rgba(240, 120, 90, 0.3);
+  color: #f0b49a;
+  font-size: 13px;
+}
+
+.shot-preview-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.shot-preview-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 14px;
+  border-radius: 9px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(255, 255, 255, 0.03);
+  color: #dbe2ee;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 130ms ease, border-color 130ms ease;
+}
+
+.shot-preview-actions button:hover {
+  background: rgba(var(--domain-accent-rgb), 0.16);
+  border-color: rgba(var(--domain-accent-rgb), 0.34);
+}
+
+/* ----------          PODEŠAVANJA (Alati)          ---------- */
+
+.shot-settings-shortcut {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.shot-settings-shortcut input {
+  width: 160px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  background: rgba(255, 255, 255, 0.03);
+  color: #eef2f8;
+  font: inherit;
+  font-size: 13px;
+}
+
+.shot-settings-clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  background: transparent;
+  color: #9aa5b6;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.shot-settings-clear:hover {
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.shot-settings-path {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: #8b94a6;
+  word-break: break-all;
+}

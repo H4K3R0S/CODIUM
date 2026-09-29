@@ -1,0 +1,51 @@
+/* ==========          TRAKA ALARMA          ========== */
+/*
+ * Izdvojeno iz codium-monitoring.css jer se ista traka crta na DVA ekrana —
+ * Monitoring i CODIUM Overview. `AlertStrip` uvozi bas ovaj fajl, pa nijedan
+ * od njih ne mora da zna za tudje stilove.
+ *
+ * Crvena je ovde rezervisana boja znacenja (nesto gori), ne boja podatka.
+ */
+
+/* Prazna traka se IZGOVARA: nestala traka i traka koja nije stigla izgledaju
+   isto. */
+.cmon-mirno {
+  margin: 0;
+  color: #4ade80;
+  font-size: 0.8rem;
+}
+
+
+/* ==========          ALARMI          ========== */
+
+.cmon-alarmi {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cmon-alarmi li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 8px 10px;
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  border-radius: 0;
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.08);
+  font-size: 0.8rem;
+}
+
+.cmon-alarm-cilj {
+  font-weight: 650;
+}
+
+.cmon-alarm-vrednost,
+.cmon-alarm-vreme {
+  color: var(--cmon-text-muted);
+  font-size: 0.72rem;
+}

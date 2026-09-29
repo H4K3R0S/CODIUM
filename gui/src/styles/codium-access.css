@@ -1,0 +1,421 @@
+/* ==========          ACCESS & USERS          ========== */
+/*
+ * Isti ton kao codium-dashboard.css: ostre ivice, tamna podloga, tanke
+ * linije. Odbijanje (deny) nije kvar nego pravilo koje je odradilo posao,
+ * pa ne sme da izgleda kao greska — samo needs_approval i deny dobijaju boju,
+ * allow ostaje neutralno.
+ */
+
+.cacc-page {
+  --cacc-surface: rgba(15, 21, 34, 0.6);
+  --cacc-surface-2: rgba(255, 255, 255, 0.02);
+  --cacc-border: rgba(148, 163, 184, 0.14);
+  --cacc-text: #e2e8f0;
+  --cacc-text-muted: #8b95a8;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 28px 48px;
+}
+
+
+/* ==========          ZAGLAVLJE          ========== */
+
+.cacc-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cacc-eyebrow {
+  margin: 0;
+  color: var(--domain-accent);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cacc-head h1 {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.cacc-sub {
+  margin: 0;
+  color: var(--cacc-text-muted);
+  font-size: 0.82rem;
+}
+
+
+/* ==========          GRESKA          ========== */
+
+.cacc-error {
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  border-radius: 0;
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.08);
+  font-size: 0.8rem;
+}
+
+
+/* ==========          PANEL          ========== */
+
+.cacc-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--cacc-border);
+  border-radius: 0;
+  background: var(--cacc-surface);
+}
+
+.cacc-panel h2 {
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  color: #f1f5f9;
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+.cacc-empty {
+  margin: 0;
+  color: var(--cacc-text-muted);
+  font-size: 0.82rem;
+}
+
+
+/* ==========          RED ODOBRENJA          ========== */
+
+.cacc-approvals {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cacc-approval {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 0;
+  background: var(--cacc-surface-2);
+}
+
+.cacc-approval-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  color: #fbbf24;
+}
+
+.cacc-actor {
+  color: var(--cacc-text);
+  font-size: 0.84rem;
+  font-weight: 650;
+}
+
+.cacc-action {
+  color: var(--cacc-text-muted);
+  font-size: 0.78rem;
+}
+
+.cacc-target {
+  overflow: hidden;
+  color: var(--cacc-text-muted);
+  font-size: 0.78rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cacc-when {
+  margin-left: auto;
+  color: var(--cacc-text-muted);
+  font-size: 0.7rem;
+}
+
+.cacc-approval-payload {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: 0;
+  padding: 10px 0 0;
+  border-top: 1px solid rgba(148, 163, 184, 0.08);
+}
+
+.cacc-approval-payload div {
+  display: flex;
+  gap: 6px;
+}
+
+.cacc-approval-payload dt {
+  color: var(--cacc-text-muted);
+  font-size: 0.72rem;
+}
+
+.cacc-approval-payload dd {
+  margin: 0;
+  color: var(--cacc-text);
+  font-size: 0.72rem;
+}
+
+.cacc-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cacc-actions input {
+  flex: 1;
+  padding: 7px 10px;
+  border: 1px solid var(--cacc-border);
+  border-radius: 0;
+  color: var(--cacc-text);
+  background: var(--cacc-surface-2);
+  font: inherit;
+  font-size: 0.78rem;
+}
+
+.cacc-actions button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border: 1px solid var(--cacc-border);
+  border-radius: 0;
+  background: var(--cacc-surface-2);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease;
+}
+
+.cacc-approve {
+  color: #7dd3a0;
+}
+
+.cacc-approve:hover {
+  border-color: rgba(125, 211, 160, 0.4);
+  background: rgba(125, 211, 160, 0.08);
+}
+
+.cacc-reject {
+  color: #f87171;
+}
+
+.cacc-reject:hover {
+  border-color: rgba(248, 113, 113, 0.4);
+  background: rgba(248, 113, 113, 0.08);
+}
+
+
+/* ==========          TABELA PRAVILA          ========== */
+
+.cacc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+
+.cacc-table th {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--cacc-border);
+  color: var(--cacc-text-muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.cacc-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+  color: var(--cacc-text);
+}
+
+.cacc-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.cacc-table td button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border: 0;
+  color: var(--cacc-text-muted);
+  background: transparent;
+  cursor: pointer;
+}
+
+.cacc-table td button:hover {
+  color: #f87171;
+}
+
+.cacc-verdict {
+  font-weight: 650;
+  text-transform: lowercase;
+}
+
+.cacc-verdict.v-allow {
+  color: var(--cacc-text);
+}
+
+.cacc-verdict.v-needs_approval {
+  color: #fbbf24;
+}
+
+.cacc-verdict.v-deny {
+  color: #f87171;
+}
+
+
+/* ==========          FORMA ZA NOVO PRAVILO          ========== */
+
+.cacc-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.cacc-form input,
+.cacc-form select {
+  padding: 7px 10px;
+  border: 1px solid var(--cacc-border);
+  border-radius: 0;
+  color: var(--cacc-text);
+  background: var(--cacc-surface-2);
+  font: inherit;
+  font-size: 0.78rem;
+}
+
+.cacc-form button {
+  padding: 7px 14px;
+  border: 1px solid var(--domain-accent);
+  border-radius: 0;
+  color: var(--domain-accent);
+  background: rgba(var(--domain-accent-rgb), 0.08);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cacc-form button:hover {
+  background: rgba(var(--domain-accent-rgb), 0.16);
+}
+
+
+/* ==========          AUDIT LOGS: FILTERI          ========== */
+
+.cadt-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.cadt-filters label {
+  color: var(--cacc-text-muted);
+  font-size: 0.78rem;
+}
+
+.cadt-filters input {
+  padding: 7px 10px;
+  border: 1px solid var(--cacc-border);
+  border-radius: 0;
+  color: var(--cacc-text);
+  background: var(--cacc-surface-2);
+  font: inherit;
+  font-size: 0.78rem;
+}
+
+.cadt-filters button {
+  padding: 7px 14px;
+  border: 1px solid var(--domain-accent);
+  border-radius: 0;
+  color: var(--domain-accent);
+  background: rgba(var(--domain-accent-rgb), 0.08);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cadt-filters button:hover {
+  background: rgba(var(--domain-accent-rgb), 0.16);
+}
+
+
+/* ==========          AUDIT LOGS: TABELA          ========== */
+
+.cadt-table td {
+  font-size: 0.78rem;
+}
+
+
+/* ==========          AUDIT LOGS: UCITAJ JOS          ========== */
+
+.cadt-more {
+  align-self: center;
+  padding: 7px 16px;
+  border: 1px solid var(--cacc-border);
+  border-radius: 0;
+  color: var(--cacc-text-muted);
+  background: var(--cacc-surface-2);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.cadt-more:hover {
+  border-color: var(--domain-accent);
+  color: var(--domain-accent);
+}
+
+
+/* ==========          PAMETAN RASPORED (Access i Audit)          ========== */
+/*
+ * Obe strane vozi `useSmartLayout`, isti kao na kontrolnoj tabli. Ovde stoji
+ * samo ono sto je njihovo: mesto za chat dock uz dno i naslov panela koji se u
+ * preview-u ne ponavlja (naslov tamo nosi sam okvir).
+ */
+
+.cacc-page {
+  /* Prostor za chat dock (chub) uz dno-centar. */
+  padding-bottom: 72px;
+}
+
+.sframe.is-preview .cacc-panel > h2 {
+  display: none;
+}
+
+/* Skupljena strana nema svoj razmak — stubac ga dobija iz `.smart-stack`. */
+.cacc-page.is-tucked {
+  gap: 0;
+}

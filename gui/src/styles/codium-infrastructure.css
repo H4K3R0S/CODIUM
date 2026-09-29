@@ -1,0 +1,370 @@
+/* ==========          CODIUM INFRASTRUCTURE          ========== */
+/*
+ * Isti ton kao codium-access.css i codium-agents.css: ostre ivice, tamna
+ * podloga, tanke linije, centriran stubac do 1200px.
+ *
+ * Crvena, zuta i zelena su rezervisane za znacenje u celom domenu. `running`
+ * je zelen, `error` crven, a `stopped` NEUTRALAN — ugasen servis najcesce nije
+ * kvar nego stanje koje je covek sam napravio.
+ */
+
+.cinf-page {
+  --cinf-surface: rgba(15, 21, 34, 0.6);
+  --cinf-surface-2: rgba(255, 255, 255, 0.02);
+  --cinf-border: rgba(148, 163, 184, 0.14);
+  --cinf-text: #e2e8f0;
+  --cinf-text-muted: #8b95a8;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 28px 48px;
+}
+
+
+/* ==========          ZAGLAVLJE          ========== */
+
+.cinf-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cinf-eyebrow {
+  margin: 0;
+  color: var(--domain-accent);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cinf-head h1 {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.cinf-sub {
+  margin: 0;
+  color: var(--cinf-text-muted);
+  font-size: 0.82rem;
+}
+
+.cinf-alat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+
+/* ==========          PORUKE          ========== */
+
+.cinf-error,
+.cinf-greska {
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  border-radius: 0;
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.08);
+  font-size: 0.8rem;
+}
+
+.cinf-hint {
+  margin: 0;
+  color: var(--cinf-text-muted);
+  font-size: 0.76rem;
+}
+
+
+/* ==========          RASPORED          ========== */
+
+.cinf-grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 340px);
+  gap: 16px;
+  align-items: start;
+}
+
+/* Node uzima levu kolonu i sve njene redove; alatke stoje desno. */
+.cinf-grid > .sframe:first-child {
+  grid-row: span 2;
+}
+
+
+/* ==========          PANEL          ========== */
+
+.cinf-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid var(--cinf-border);
+  border-radius: 0;
+  background: var(--cinf-surface);
+}
+
+.cinf-panel h2 {
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  color: #f1f5f9;
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+/* U skupljenom/preview stanju naslov nosi ljuska okvira. */
+.sframe.is-tucked .cinf-panel,
+.sframe.is-preview .cinf-panel {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.sframe.is-preview .cinf-panel > h2 {
+  display: none;
+}
+
+
+/* ==========          KARTICA SERVISA          ========== */
+
+.cinf-kartice {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cinf-kartica {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid var(--cinf-border);
+  border-radius: 0;
+  background: var(--cinf-surface-2);
+}
+
+.cinf-kartica-glava {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cinf-ime {
+  padding: 0;
+  border: 0;
+  color: var(--cinf-text);
+  background: transparent;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 650;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cinf-ime:hover {
+  color: var(--domain-accent);
+}
+
+.cinf-tip,
+.cinf-pid {
+  color: var(--cinf-text-muted);
+  font-size: 0.72rem;
+}
+
+.cinf-opis {
+  overflow: hidden;
+  margin: 0;
+  color: var(--cinf-text);
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.74rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cinf-detalj {
+  margin: 0;
+  color: var(--cinf-text-muted);
+  font-size: 0.72rem;
+}
+
+
+/* ==========          AKCIJE          ========== */
+
+.cinf-akcije {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cinf-akcije button,
+.cinf-alat button,
+.cinf-pronadji button,
+.cinf-obrazac button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid var(--domain-accent);
+  border-radius: 0;
+  color: var(--domain-accent);
+  background: rgba(var(--domain-accent-rgb), 0.08);
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cinf-akcije button:disabled,
+.cinf-pronadji button:disabled,
+.cinf-obrazac button:disabled {
+  border-color: var(--cinf-border);
+  color: var(--cinf-text-muted);
+  background: transparent;
+  cursor: not-allowed;
+}
+
+/* Uklanjanje iz registra nije glavni potez — ne sme da nosi akcent. */
+.cinf-akcije button.cinf-ukloni {
+  margin-left: auto;
+  border-color: var(--cinf-border);
+  color: var(--cinf-text-muted);
+  background: transparent;
+  font-weight: 400;
+}
+
+.cinf-akcije button.cinf-ukloni:hover {
+  border-color: #f87171;
+  color: #f87171;
+}
+
+
+/* ==========          LOG          ========== */
+
+.cinf-log {
+  overflow: auto;
+  max-height: 320px;
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--cinf-border);
+  border-radius: 0;
+  color: #d7dde8;
+  background: rgba(5, 8, 15, 0.75);
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+
+/* ==========          PRONALAZENJE          ========== */
+
+.cinf-pronadji {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.cinf-predlozi {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cinf-predlozi label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 6px 8px;
+  border: 1px solid transparent;
+  color: var(--cinf-text);
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.cinf-predlozi label:hover {
+  border-color: var(--cinf-border);
+  background: var(--cinf-surface-2);
+}
+
+.cinf-predlog-ime {
+  font-weight: 650;
+}
+
+
+/* ==========          OBRAZAC          ========== */
+
+.cinf-obrazac {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cinf-obrazac label {
+  margin-top: 4px;
+  color: var(--cinf-text-muted);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cinf-obrazac input,
+.cinf-obrazac select {
+  padding: 6px 10px;
+  border: 1px solid var(--cinf-border);
+  border-radius: 0;
+  color: var(--cinf-text);
+  background: var(--cinf-surface-2);
+  font: inherit;
+  font-size: 0.78rem;
+}
+
+.cinf-obrazac button {
+  align-self: flex-start;
+  margin-top: 10px;
+}
+
+
+/* ==========          ZNACKE          ========== */
+
+.cinf-znacka {
+  padding: 1px 7px;
+  border: 1px solid currentColor;
+  border-radius: 0;
+  font-size: 0.68rem;
+}
+
+.cinf-znacka.running { color: #4ade80; }
+.cinf-znacka.error { color: #f87171; }
+/* Ugasen servis najcesce nije kvar nego stanje koje je covek sam napravio. */
+.cinf-znacka.stopped,
+.cinf-znacka.unknown { color: var(--cinf-text-muted); }
+
+
+/* ==========          USKO          ========== */
+
+@media (max-width: 900px) {
+  .cinf-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cinf-grid > .sframe:first-child {
+    grid-row: auto;
+  }
+}

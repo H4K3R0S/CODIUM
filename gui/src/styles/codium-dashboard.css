@@ -1,0 +1,754 @@
+/* ==========          CODIUM OVERVIEW DASHBOARD          ========== */
+/*
+ * Smireni „enterprise" ton: neutralne površine i borderi, akcent (žuta) samo
+ * tačkasto (ikonice kartica, progres, aktivno stanje). Bez neon glowa.
+ */
+
+.cdash {
+  --cdash-surface: rgba(15, 21, 34, 0.6);
+  --cdash-surface-2: rgba(255, 255, 255, 0.02);
+  --cdash-border: rgba(148, 163, 184, 0.14);
+  --cdash-text: #e2e8f0;
+  --cdash-text-muted: #8b95a8;
+
+  /* Pozicioniran roditelj: dokovan chat se meri po radnom prostoru, ne po
+     prozoru — sidebar nije prazan prostor i ne sme da udje u centriranje. */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1500px;
+  margin: 0 auto;
+  /* Donji razmak je visina chat okvira: on je fiksiran uz dno prozora, pa
+     poslednje kartice inace ostaju zauvek pokrivene (codium-hub-chat.css). */
+  padding: 24px 28px calc(min(520px, 58vh) + 28px);
+}
+
+
+/* ==========          ZAGLAVLJE          ========== */
+
+.cdash-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cdash-eyebrow {
+  margin: 0 0 4px;
+  color: var(--domain-accent);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cdash-title {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.cdash-header-action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border: 1px solid var(--cdash-border);
+  border-radius: 0;
+  color: var(--cdash-text);
+  background: var(--cdash-surface-2);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease;
+}
+
+.cdash-header-action:hover {
+  border-color: rgba(var(--domain-accent-rgb), 0.4);
+  background: rgba(var(--domain-accent-rgb), 0.08);
+}
+
+
+/* ==========          STAT KARTICE          ========== */
+
+.cdash-stats {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 1200px) {
+  .cdash-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .cdash-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.cdash-stat {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--cdash-border);
+  border-radius: 0;
+  background: var(--cdash-surface);
+  transition:
+    border-color 150ms ease,
+    background 150ms ease;
+}
+
+.cdash-stat:hover {
+  border-color: rgba(var(--domain-accent-rgb), 0.28);
+}
+
+.cdash-stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  border-radius: 0;
+  color: var(--domain-accent);
+  background: rgba(var(--domain-accent-rgb), 0.1);
+}
+
+.cdash-stat-body {
+  min-width: 0;
+}
+
+.cdash-stat-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 3px;
+  color: var(--cdash-text-muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cdash-stat-value {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 1.5rem;
+  font-weight: 750;
+  line-height: 1.1;
+}
+
+.cdash-stat-hint {
+  margin: 3px 0 0;
+  color: var(--cdash-text-muted);
+  font-size: 0.7rem;
+}
+
+/* „mock" oznaka za placeholder podatke. */
+.cdash-mock {
+  padding: 1px 6px;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 0;
+  color: #94a3b8;
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+
+/* ==========          KOLONE          ========== */
+
+.cdash-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+@media (max-width: 1100px) {
+  .cdash-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cdash-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--cdash-border);
+  border-radius: 0;
+  background: var(--cdash-surface);
+}
+
+.cdash-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.cdash-panel-head h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: #f1f5f9;
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+.cdash-link {
+  border: 0;
+  color: var(--domain-accent);
+  background: transparent;
+  font: inherit;
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cdash-empty {
+  margin: 8px 0;
+  color: var(--cdash-text-muted);
+  font-size: 0.82rem;
+}
+
+
+/* ==========          ACTIVE PROJECTS          ========== */
+
+.cdash-projects {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cdash-project {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--cdash-border);
+  border-radius: 0;
+  background: var(--cdash-surface-2);
+  cursor: pointer;
+  text-align: left;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease;
+}
+
+.cdash-project:hover {
+  border-color: rgba(var(--domain-accent-rgb), 0.35);
+  background: rgba(var(--domain-accent-rgb), 0.06);
+}
+
+.cdash-project.is-active {
+  border-color: rgba(var(--domain-accent-rgb), 0.5);
+}
+
+.cdash-project-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.cdash-project-name {
+  overflow: hidden;
+  color: var(--cdash-text);
+  font-size: 0.86rem;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cdash-project-pct {
+  flex: 0 0 auto;
+  color: var(--domain-accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.cdash-progress {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 0;
+  background: rgba(148, 163, 184, 0.14);
+}
+
+.cdash-progress-fill {
+  display: block;
+  height: 100%;
+  border-radius: 0;
+  background: var(--domain-accent);
+  transition: width 300ms ease;
+}
+
+.cdash-project-meta {
+  display: flex;
+  gap: 6px;
+}
+
+.cdash-tag {
+  padding: 2px 8px;
+  border-radius: 0;
+  color: var(--cdash-text-muted);
+  background: rgba(148, 163, 184, 0.1);
+  font-size: 0.66rem;
+  font-weight: 500;
+}
+
+
+/* ==========          LIVE ACTIVITY          ========== */
+
+.cdash-activity {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cdash-activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 6px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+}
+
+.cdash-activity-item:last-child {
+  border-bottom: 0;
+}
+
+.cdash-activity-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  border-radius: 0;
+  color: #7dd3a0;
+  background: rgba(125, 211, 160, 0.1);
+}
+
+.cdash-activity-title {
+  margin: 0;
+  color: var(--cdash-text);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.cdash-activity-meta {
+  margin: 2px 0 0;
+  color: var(--cdash-text-muted);
+  font-size: 0.7rem;
+}
+
+
+/* ==========          AI AGENTS          ========== */
+
+.cdash-agents {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cdash-agent {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 6px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+}
+
+.cdash-agent:last-child {
+  border-bottom: 0;
+}
+
+.cdash-agent-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  border-radius: 0;
+  color: var(--domain-accent);
+  background: rgba(var(--domain-accent-rgb), 0.1);
+}
+
+.cdash-agent-body {
+  min-width: 0;
+  flex: 1;
+}
+
+.cdash-agent-name {
+  margin: 0;
+  color: var(--cdash-text);
+  font-size: 0.8rem;
+  font-weight: 550;
+}
+
+.cdash-agent-role {
+  margin: 2px 0 0;
+  overflow: hidden;
+  color: var(--cdash-text-muted);
+  font-size: 0.68rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cdash-agent-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: 0 0 auto;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.cdash-agent-status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.cdash-agent-status.working {
+  color: #7dd3a0;
+}
+
+.cdash-agent-status.working::before {
+  background: #7dd3a0;
+}
+
+.cdash-agent-status.idle {
+  color: #94a3b8;
+}
+
+.cdash-agent-status.idle::before {
+  background: #94a3b8;
+}
+
+/* Cekanje na coveka nije kvar — zuto, ne crveno. Neuspeh ostaje crven. */
+.cdash-agent-status.s-waiting_approval {
+  color: #fbbf24;
+}
+
+.cdash-agent-status.s-waiting_approval::before {
+  background: #fbbf24;
+}
+
+.cdash-agent-status.s-failed {
+  color: #f87171;
+}
+
+.cdash-agent-status.s-failed::before {
+  background: #f87171;
+}
+
+
+/* ==========          SKUPLJENO STANJE (RAZGOVOR U TOKU)          ========== */
+/*
+ * Cim se kuca u CODIUM chat, dashboard se sklanja s puta: stat kartice se
+ * minimiziraju u vertikalnu traku ikona uz sidebar, a paneli (Active Projects,
+ * Live Activity, AI Agents) u uske kartice sa samim naslovom, odmah desno od
+ * te trake. Sam prelaz (putovanje okvira) animira FLIP u CodiumOverview.tsx —
+ * ovde stoji samo ciljni raspored i mekano gasenje sadrzaja.
+ *
+ * Klik na traku ili kartice vraca pun raspored.
+ */
+
+.cdash {
+  --cdash-tuck-rail: 54px;
+  --cdash-tuck-card: 196px;
+}
+
+.cdash.is-tucked {
+  display: grid;
+  grid-template-columns:
+    var(--cdash-tuck-rail)
+    var(--cdash-tuck-card)
+    minmax(0, 1fr);
+  grid-template-areas:
+    "head head head"
+    "rail cards free";
+  align-content: start;
+  column-gap: 12px;
+  row-gap: 20px;
+  /* Bez centriranja: traka i kartice moraju uz levu ivicu radne povrsine
+     (odmah pored sidebara), a ne uz ivicu centriranog stupca od 1500px. */
+  max-width: none;
+  margin: 0;
+  padding-left: 10px;
+}
+
+.cdash.is-tucked .cdash-header {
+  grid-area: head;
+}
+
+/* Stat kartice: vertikalna traka golih ikona, uz sidebar. */
+.cdash.is-tucked .cdash-stats {
+  grid-area: rail;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+  cursor: zoom-in;
+}
+
+.cdash.is-tucked .cdash-stat {
+  justify-content: center;
+  padding: 8px;
+}
+
+.cdash.is-tucked .cdash-stat-body {
+  display: none;
+}
+
+/* Paneli: kartica visine naslova, desno od trake ikona. */
+.cdash.is-tucked .cdash-columns {
+  grid-area: cards;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: 8px;
+  cursor: zoom-in;
+}
+
+.cdash.is-tucked .cdash-panel {
+  gap: 0;
+  padding: 10px 12px;
+  border-left: 2px solid rgba(var(--domain-accent-rgb), 0.45);
+}
+
+.cdash.is-tucked .cdash-panel > *:not(.cdash-panel-head),
+.cdash.is-tucked .cdash-link,
+.cdash.is-tucked .cdash-mock {
+  display: none;
+}
+
+.cdash.is-tucked .cdash-panel-head {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.cdash.is-tucked .cdash-panel-head h2 {
+  overflow: hidden;
+  font-size: 0.76rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* ==========          PREVIEW UZ CHAT          ========== */
+/*
+ * Klik na ikonu ili karticu u skupljenoj traci izvlaci preview: klizne uz
+ * desnu ivicu chat okvira i tu ostaje dok se ne zatvori ili dok se ne klikne
+ * druga kartica. Sirina je jedna promenljiva, jer istu vrednost mora da zna i
+ * chat (da mu se okvir skrati) i sam dashboard (da mu se sadrzaj ne podvuce
+ * pod preview).
+ */
+
+.cdash {
+  --cdash-preview-w: min(360px, 34vw);
+  /* Panel chata uz desnu ivicu (core-chat-dock.css). */
+  --cdash-chat-w: min(430px, 92vw);
+  --cdash-chat-h: min(520px, 58vh);
+}
+
+.cdash-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Okvir cija je kartica trenutno otvorena u preview-u. */
+.cdash.is-tucked .cdash-stat.is-previewed,
+.cdash.is-tucked .cdash-panel.is-previewed {
+  border-color: rgba(var(--domain-accent-rgb), 0.55);
+  background: rgba(var(--domain-accent-rgb), 0.1);
+}
+
+.cdash-preview {
+  position: fixed;
+  right: 12px;
+  bottom: 0;
+  z-index: 45;
+  display: flex;
+  width: var(--cdash-preview-w);
+  height: var(--cdash-chat-h);
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 16px 18px;
+  border: 1px solid var(--cdash-border);
+  border-radius: 0;
+  background: rgba(11, 14, 19, 0.9);
+  backdrop-filter: blur(10px);
+  animation: cdash-preview-in 320ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Chat je panel desno — preview staje levo od njega, ne iza. */
+.cdash.chat-right .cdash-preview {
+  top: var(--titlebar-h, 34px);
+  right: calc(var(--cdash-chat-w) + 10px);
+  height: auto;
+}
+
+@keyframes cdash-preview-in {
+  from {
+    transform: translateX(calc(var(--cdash-preview-w) + 24px));
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cdash-preview {
+    animation: none;
+  }
+}
+
+.cdash-preview-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.cdash-preview-head h2 {
+  margin: 0;
+  overflow: hidden;
+  color: #f1f5f9;
+  font-size: 0.9rem;
+  font-weight: 650;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cdash-preview-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  flex: 0 0 auto;
+  border: 0;
+  color: var(--cdash-text-muted);
+  background: transparent;
+  cursor: pointer;
+}
+
+.cdash-preview-close:hover {
+  color: var(--cdash-text);
+}
+
+.cdash-preview-body {
+  overflow: auto;
+  flex: 1;
+}
+
+/* Stat kartica u preview-u: ikona, broj, napomena. */
+.cdash-preview-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.cdash-preview-stat .cdash-stat-icon {
+  width: 44px;
+  height: 44px;
+}
+
+.cdash-preview-stat .cdash-stat-value {
+  font-size: 2rem;
+}
+
+
+/* ==========          MESTO ZA CHAT I PREVIEW          ========== */
+/*
+ * Otvoren preview skracuje chat okvir umesto da stane preko njega; kada je
+ * chat panel uz desnu ivicu, dashboard mu rezervise prostor (inace bi kartice
+ * i traka ostale iza panela).
+ */
+
+.cdash.has-preview .cdock.is-codium.pos-bottom {
+  right: calc(12px + var(--cdash-preview-w) + 10px);
+}
+
+.cdash.chat-right {
+  /* Panel desno stoji punom visinom — donji razmak za chat vise ne treba. */
+  padding-right: calc(var(--cdash-chat-w) + 16px);
+  padding-bottom: 28px;
+}
+
+.cdash.chat-right.has-preview {
+  padding-right: calc(var(--cdash-chat-w) + var(--cdash-preview-w) + 24px);
+}
+
+/* Uz panel desno radna povrsina je uska: pun raspored se preslaze u tri stat
+   kolone i jedan stubac panela umesto da se kartice cede. */
+.cdash.chat-right:not(.is-tucked) .cdash-stats {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cdash.chat-right:not(.is-tucked) .cdash-columns {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* ==========          TON REDA U LIVE ACTIVITY          ==========
+ * Odbijena akcija nije kvar nego pravilo koje je odradilo posao, pa nosi
+ * svoju boju — inače bi izgledala isto kao pad poziva.
+ */
+
+.cdash-activity-item.tone-blocked .cdash-activity-icon {
+  border-color: rgba(251, 191, 36, 0.45);
+  color: #fbbf24;
+}
+
+.cdash-activity-item.tone-error .cdash-activity-icon {
+  border-color: rgba(248, 113, 113, 0.45);
+  color: #f87171;
+}
+
+
+/* ==========          TRAKA AKTIVNIH ALARMA (E6)          ========== */
+/*
+ * Stoji iznad stat kartica: ako nesto gori, to je prvo sto treba da se vidi.
+ * Sam izgled stavki dolazi iz codium-monitoring.css — traka je ista i ovde i
+ * na ekranu Monitoring, pa se ne crta dva puta.
+ */
+
+.cdash-alarmi {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}

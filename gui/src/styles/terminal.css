@@ -1,0 +1,644 @@
+/* ==========          INTEGRISANI TERMINAL          ========== */
+
+.cterm {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  background: #0b0e13;
+}
+
+/* --- tab bar --- */
+
+.cterm-tabbar {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  padding: 3px 4px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.cterm-tabs {
+  display: flex;
+  gap: 2px;
+  overflow-x: auto;
+  flex: 1;
+  min-width: 0;
+}
+
+.cterm-tab {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.03);
+  max-width: 200px;
+}
+
+.cterm-tab.active {
+  background: rgba(var(--domain-accent-rgb), 0.16);
+  border-color: var(--tab-color, rgba(var(--domain-accent-rgb), 0.5));
+}
+
+/* Tačkica boje taba (kad je korisnik obojio tab). */
+.cterm-tab-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-left: 6px;
+  flex-shrink: 0;
+}
+
+/* Inline preimenovanje taba. */
+.cterm-tab-rename {
+  width: 110px;
+  padding: 3px 6px;
+  margin: 0 2px;
+  background: #0b0e13;
+  border: 1px solid rgba(var(--domain-accent-rgb), 0.6);
+  color: var(--text-primary, #e9edf2);
+  font-size: 0.74rem;
+  outline: none;
+}
+
+/* Kontekst meni taba (preimenuj/dupliciraj/boja). */
+.cterm-tab-menu {
+  position: fixed;
+  z-index: 200;
+  min-width: 190px;
+  padding: 4px;
+  background: #12161d;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.cterm-color-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px 4px;
+}
+
+.cterm-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  padding: 0;
+}
+
+.cterm-swatch:hover {
+  transform: scale(1.15);
+}
+
+.cterm-swatch.none {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--text-secondary, #9aa4b2);
+}
+
+.cterm-tab-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary, #9aa4b2);
+  font-size: 0.74rem;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cterm-tab.active .cterm-tab-name {
+  color: var(--text-primary, #e9edf2);
+}
+
+.cterm-tab-close {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 6px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary, #9aa4b2);
+  cursor: pointer;
+}
+
+.cterm-tab-close:hover {
+  color: #ff6b6b;
+}
+
+/* --- akcije (split + „+") --- */
+
+.cterm-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cterm-act-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 6px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-secondary, #9aa4b2);
+  cursor: pointer;
+}
+
+.cterm-act-btn:hover {
+  color: rgb(var(--domain-accent-rgb));
+  border-color: rgba(var(--domain-accent-rgb), 0.5);
+}
+
+.cterm-tab-count {
+  margin-left: 5px;
+  padding: 0 5px;
+  font-size: 0.66rem;
+  border-radius: 8px;
+  background: rgba(var(--domain-accent-rgb), 0.28);
+  color: var(--text-primary, #e9edf2);
+}
+
+/* --- „+" i drop meni --- */
+
+.cterm-new {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.cterm-new-btn,
+.cterm-new-caret {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 6px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-secondary, #9aa4b2);
+  cursor: pointer;
+}
+
+.cterm-new-caret {
+  border-left: none;
+  padding: 4px 3px;
+}
+
+.cterm-new-btn:hover,
+.cterm-new-caret:hover {
+  color: rgb(var(--domain-accent-rgb));
+  border-color: rgba(var(--domain-accent-rgb), 0.5);
+}
+
+.cterm-menu {
+  position: absolute;
+  top: calc(100% + 3px);
+  right: 0;
+  min-width: 200px;
+  background: #12161d;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+}
+
+.cterm-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  background: transparent;
+  border: none;
+  color: var(--text-primary, #e9edf2);
+  font-size: 0.78rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cterm-menu-item:hover {
+  background: rgba(var(--domain-accent-rgb), 0.16);
+}
+
+.cterm-menu-sep {
+  height: 1px;
+  margin: 4px 0;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cterm-menu-label {
+  padding: 4px 10px 2px;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary, #9aa4b2);
+  opacity: 0.7;
+}
+
+/* --- editor profila (modal) --- */
+
+.cterm-prof-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.cterm-prof {
+  width: min(680px, 92vw);
+  max-height: 84vh;
+  display: flex;
+  flex-direction: column;
+  background: #12161d;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+}
+
+.cterm-prof-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cterm-prof-head h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-primary, #e9edf2);
+}
+
+.cterm-prof-x {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary, #9aa4b2);
+  cursor: pointer;
+}
+
+.cterm-prof-body {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 14px;
+  padding: 14px;
+  overflow: auto;
+}
+
+.cterm-prof-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cterm-prof-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cterm-prof-name {
+  flex: 1;
+  color: var(--text-primary, #e9edf2);
+  font-size: 0.8rem;
+}
+
+.cterm-prof-meta {
+  font-size: 0.68rem;
+  color: var(--text-secondary, #9aa4b2);
+}
+
+.cterm-prof-icon {
+  display: inline-flex;
+  padding: 3px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary, #9aa4b2);
+  cursor: pointer;
+}
+
+.cterm-prof-icon:hover {
+  color: rgb(var(--domain-accent-rgb));
+}
+
+.cterm-prof-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cterm-prof-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.74rem;
+  color: var(--text-secondary, #9aa4b2);
+}
+
+.cterm-prof-field input,
+.cterm-prof-field select {
+  padding: 5px 8px;
+  background: #0b0e13;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--text-primary, #e9edf2);
+  font-size: 0.8rem;
+}
+
+.cterm-prof-field input:focus,
+.cterm-prof-field select:focus {
+  outline: none;
+  border-color: rgba(var(--domain-accent-rgb), 0.6);
+}
+
+.cterm-prof-env {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.cterm-prof-add-env {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  align-self: flex-start;
+  padding: 3px 8px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--text-secondary, #9aa4b2);
+  font-size: 0.72rem;
+  cursor: pointer;
+}
+
+.cterm-prof-save {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 4px;
+  padding: 7px 12px;
+  background: rgba(var(--domain-accent-rgb), 0.18);
+  border: 1px solid rgba(var(--domain-accent-rgb), 0.5);
+  color: var(--text-primary, #e9edf2);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.cterm-prof-save:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* --- telo (xterm) --- */
+
+.cterm-body {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+.cterm-view {
+  position: absolute;
+  inset: 0;
+}
+
+/* --- split (panovi u tabu) --- */
+
+.cterm-split {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.cterm-split.row {
+  flex-direction: row;
+}
+
+.cterm-split.column {
+  flex-direction: column;
+}
+
+.cterm-pane {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid transparent;
+}
+
+.cterm-pane.active {
+  border-color: rgba(var(--domain-accent-rgb), 0.45);
+}
+
+/* Grupisan pan: obojena (deblja) ivica — boja stiže inline (groupColor). */
+.cterm-pane.grouped {
+  border-width: 2px;
+  border-style: solid;
+}
+
+/* Cilj drop-a pri spajanju u grupu. */
+.cterm-pane.drop-over {
+  outline: 2px dashed rgba(var(--domain-accent-rgb), 0.9);
+  outline-offset: -2px;
+}
+
+.cterm-pane-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 6px;
+  font-size: 0.68rem;
+  color: var(--text-secondary, #9aa4b2);
+  background: rgba(255, 255, 255, 0.03);
+  flex-shrink: 0;
+  cursor: grab;
+}
+
+.cterm-pane-head:active {
+  cursor: grabbing;
+}
+
+.cterm-pane-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.cterm-pane-grip {
+  opacity: 0.5;
+}
+
+.cterm-pane-close {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 4px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary, #9aa4b2);
+  cursor: pointer;
+}
+
+.cterm-pane-close:hover {
+  color: #ff6b6b;
+}
+
+.cterm-pane-body {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+/* Svaki pan segmenta prekriva telo; vidljiv je samo aktivni (ostali display:none). */
+.cterm-pane-slot {
+  position: absolute;
+  inset: 0;
+}
+
+/* --- tab-stack (grupa panova sa deljenim tabovima) --- */
+
+.cterm-stack-bar {
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+  padding: 2px 4px;
+  overflow-x: auto;
+  background: rgba(255, 255, 255, 0.03);
+  flex-shrink: 0;
+}
+
+.cterm-stack-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 6px;
+  max-width: 160px;
+  font-size: 0.68rem;
+  color: var(--text-secondary, #9aa4b2);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid transparent;
+  cursor: grab;
+  white-space: nowrap;
+}
+
+.cterm-stack-tab:active {
+  cursor: grabbing;
+}
+
+.cterm-stack-tab.active {
+  color: var(--text-primary, #e9edf2);
+  background: rgba(var(--domain-accent-rgb), 0.16);
+  border-color: rgba(var(--domain-accent-rgb), 0.4);
+}
+
+.cterm-stack-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cterm-divider {
+  flex: 0 0 6px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.cterm-divider:hover {
+  background: rgba(var(--domain-accent-rgb), 0.5);
+}
+
+.cterm-divider.row {
+  cursor: col-resize;
+}
+
+.cterm-divider.column {
+  cursor: row-resize;
+}
+
+.cterm-view-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.cterm-host {
+  width: 100%;
+  height: 100%;
+  padding: 4px 6px;
+  box-sizing: border-box;
+}
+
+/* --- pretraga (Ctrl+F) --- */
+
+.cterm-search {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 4px;
+  background: #12161d;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+
+.cterm-search-input {
+  width: 160px;
+  padding: 3px 7px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--text-primary, #e9edf2);
+  font-size: 0.76rem;
+}
+
+.cterm-search-input:focus {
+  outline: none;
+  border-color: rgba(var(--domain-accent-rgb), 0.6);
+}
+
+.cterm-search-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 5px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary, #9aa4b2);
+  cursor: pointer;
+}
+
+.cterm-search-btn:hover {
+  color: rgb(var(--domain-accent-rgb));
+}
+
+/* --- prazno / browser --- */
+
+.cterm-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 100%;
+  color: var(--text-secondary, #9aa4b2);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 16px;
+}
+
+.cterm-hint {
+  font-size: 0.76rem;
+  opacity: 0.7;
+}

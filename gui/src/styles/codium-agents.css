@@ -1,0 +1,430 @@
+/* ==========          AI AGENTS          ========== */
+/*
+ * Isti ton kao codium-access.css i codium-dashboard.css: ostre ivice, tamna
+ * podloga, tanke linije.
+ *
+ * Crvena, zuta i zelena su rezervisane za znacenje u celom domenu — neuspeh,
+ * cekanje na coveka, uspeh — i ne smeju se pojaviti na tonovima koraka jer bi
+ * tamo nosile lazan alarm. Zato je t-result neutralan (rezultat alata nije
+ * signal uspeha) i t-answer neutralan (konacan odgovor vec ima svoje mesto i
+ * .cag-result ispod). t-call sme da zadrzi plavu — to je strukturna oznaka
+ * "agent je zatrazio alat", bez alarmnog znacenja, van rezervisanog trojca.
+ * s-waiting_approval i t-blocked ostaju zuti (cekanje na coveka nije kvar,
+ * sistem radi svoj posao) a s-failed ostaje crven (stvarni neuspeh).
+ */
+
+.cag-page {
+  --cag-surface: rgba(15, 21, 34, 0.6);
+  --cag-surface-2: rgba(255, 255, 255, 0.02);
+  --cag-border: rgba(148, 163, 184, 0.14);
+  --cag-text: #e2e8f0;
+  --cag-text-muted: #8b95a8;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 28px 48px;
+}
+
+
+/* ==========          ZAGLAVLJE          ========== */
+
+.cag-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cag-eyebrow {
+  margin: 0;
+  color: var(--domain-accent);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cag-head h1 {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.cag-sub {
+  margin: 0;
+  color: var(--cag-text-muted);
+  font-size: 0.82rem;
+}
+
+
+/* ==========          GRESKA          ========== */
+
+.cag-error {
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  border-radius: 0;
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.08);
+  font-size: 0.8rem;
+}
+
+
+/* ==========          RASPORED          ========== */
+
+.cag-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.cag-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid var(--cag-border);
+  border-radius: 0;
+  background: var(--cag-surface);
+}
+
+.cag-panel h2 {
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  color: #f1f5f9;
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+.cag-panel h3 {
+  margin: 8px 0 0;
+  color: var(--cag-text-muted);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+
+/* ==========          SPISAK AGENATA          ========== */
+
+.cag-list ul {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cag-list button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease;
+}
+
+.cag-list button:hover {
+  border-color: var(--cag-border);
+  background: var(--cag-surface-2);
+}
+
+.cag-list button.is-active {
+  border-color: var(--domain-accent);
+  background: rgba(var(--domain-accent-rgb), 0.08);
+}
+
+.cag-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--cag-text);
+  font-size: 0.84rem;
+  font-weight: 650;
+}
+
+.cag-meta {
+  color: var(--cag-text-muted);
+  font-size: 0.7rem;
+}
+
+
+/* ==========          UREDJIVAC AGENTA          ========== */
+
+.cag-editor label {
+  color: var(--cag-text-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cag-editor textarea,
+.cag-editor input[type="number"] {
+  padding: 8px 10px;
+  border: 1px solid var(--cag-border);
+  border-radius: 0;
+  color: var(--cag-text);
+  background: var(--cag-surface-2);
+  font: inherit;
+  font-size: 0.8rem;
+  resize: vertical;
+}
+
+.cag-editor > button {
+  align-self: flex-start;
+  padding: 7px 14px;
+  border: 1px solid var(--domain-accent);
+  border-radius: 0;
+  color: var(--domain-accent);
+  background: rgba(var(--domain-accent-rgb), 0.08);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cag-editor > button:hover {
+  background: rgba(var(--domain-accent-rgb), 0.16);
+}
+
+.cag-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cag-tools li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px;
+  border: 1px solid var(--cag-border);
+  border-radius: 0;
+  background: var(--cag-surface-2);
+}
+
+.cag-tools label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.cag-tool-name {
+  color: var(--cag-text);
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+.cag-tool-desc {
+  color: var(--cag-text-muted);
+  font-size: 0.76rem;
+}
+
+.cag-tool-action {
+  color: var(--cag-text-muted);
+  font-size: 0.7rem;
+}
+
+.cag-tool-action code {
+  color: #fbbf24;
+  font-family: inherit;
+}
+
+
+/* ==========          ZADATAK I POSAO          ========== */
+
+.cag-project {
+  margin: 0 0 8px;
+  color: var(--cag-text-muted);
+  font-size: 0.76rem;
+}
+
+.cag-project strong {
+  color: var(--cag-text);
+}
+
+.cag-run textarea {
+  padding: 8px 10px;
+  border: 1px solid var(--cag-border);
+  border-radius: 0;
+  color: var(--cag-text);
+  background: var(--cag-surface-2);
+  font: inherit;
+  font-size: 0.82rem;
+  resize: vertical;
+}
+
+.cag-run-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.cag-run-actions button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid var(--domain-accent);
+  border-radius: 0;
+  color: var(--domain-accent);
+  background: rgba(var(--domain-accent-rgb), 0.08);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cag-run-actions button:hover {
+  background: rgba(var(--domain-accent-rgb), 0.16);
+}
+
+.cag-status {
+  margin: 0;
+  color: var(--cag-text-muted);
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.cag-status.s-failed {
+  color: #f87171;
+}
+
+.cag-status.s-waiting_approval {
+  color: #fbbf24;
+}
+
+.cag-status.s-running,
+.cag-status.s-done,
+.cag-status.s-cancelled {
+  color: var(--cag-text-muted);
+}
+
+.cag-approval {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 0;
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.08);
+  font-size: 0.78rem;
+}
+
+.cag-approval a {
+  color: #fbbf24;
+  text-decoration: underline;
+}
+
+
+/* ==========          KORACI          ========== */
+
+.cag-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.cag-step {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 10px;
+  border: 1px solid var(--cag-border);
+  border-left: 2px solid var(--cag-border);
+  border-radius: 0;
+  background: var(--cag-surface-2);
+}
+
+.cag-step-kind {
+  color: var(--cag-text-muted);
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cag-step pre {
+  margin: 0;
+  overflow-x: auto;
+  color: var(--cag-text);
+  font-family: inherit;
+  font-size: 0.78rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.cag-step.t-call {
+  border-left-color: #60a5fa;
+}
+
+.cag-step.t-result,
+.cag-step.t-answer,
+.cag-step.t-thought {
+  border-left-color: var(--cag-border);
+}
+
+.cag-step.t-blocked {
+  border-left-color: #fbbf24;
+  background: rgba(251, 191, 36, 0.06);
+}
+
+.cag-result {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--cag-border);
+  border-radius: 0;
+  color: var(--cag-text);
+  background: var(--cag-surface-2);
+  font-size: 0.82rem;
+}
+
+
+/* ==========          PAMETAN RASPORED          ========== */
+/*
+ * Stranu vozi `useSmartLayout`, isti kao na kontrolnoj tabli. Mrezu od tri
+ * stupca u skupljenom stanju rusi sam `.smart-stack` (stubac uz levu ivicu),
+ * pa ovde stoji samo ono sto je ove strane.
+ */
+
+.cag-page {
+  /* Prostor za chat dock (chub) uz dno-centar. */
+  padding-bottom: 72px;
+}
+
+.cag-page.is-tucked {
+  gap: 0;
+}
+
+.sframe.is-preview .cag-panel > h2 {
+  display: none;
+}

@@ -1,0 +1,288 @@
+/* ==========          CODIUM REPOSITORIES          ========== */
+/*
+ * Isti ton kao codium-access.css i codium-agents.css: ostre ivice, tamna
+ * podloga, tanke linije, centriran stubac do 1200px. Strana zivi u pametnom
+ * rasporedu oko chata (smart-layout.css), pa okviri stoje u mrezi koja se
+ * sklopi u stubac cim razgovor krene.
+ */
+
+.crepo-page {
+  --crepo-surface: rgba(15, 21, 34, 0.6);
+  --crepo-surface-2: rgba(255, 255, 255, 0.02);
+  --crepo-border: rgba(148, 163, 184, 0.14);
+  --crepo-text: #e2e8f0;
+  --crepo-text-muted: #8b95a8;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 28px 48px;
+}
+
+
+/* ==========          ZAGLAVLJE          ========== */
+
+.crepo-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.crepo-eyebrow {
+  margin: 0;
+  color: var(--domain-accent);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.crepo-head h1 {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.crepo-sub {
+  margin: 0;
+  color: var(--crepo-text-muted);
+  font-size: 0.82rem;
+}
+
+
+/* ==========          PORUKE          ========== */
+
+.crepo-error,
+.crepo-greska {
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  border-radius: 0;
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.08);
+  font-size: 0.8rem;
+}
+
+.crepo-hint,
+.crepo-prazno {
+  margin: 0;
+  color: var(--crepo-text-muted);
+  font-size: 0.78rem;
+}
+
+
+/* ==========          RASPORED          ========== */
+
+.crepo-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+/* Razlika je najsira stvar na strani — uzima ceo red ispod. */
+.crepo-grid > .sframe:nth-child(4) {
+  grid-column: 1 / -1;
+}
+
+
+/* ==========          PANEL          ========== */
+
+.crepo-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid var(--crepo-border);
+  border-radius: 0;
+  background: var(--crepo-surface);
+}
+
+.crepo-panel h2 {
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  color: #f1f5f9;
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+/* U skupljenom/preview stanju naslov nosi ljuska okvira. */
+.sframe.is-tucked .crepo-panel,
+.sframe.is-preview .crepo-panel {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.sframe.is-preview .crepo-panel > h2 {
+  display: none;
+}
+
+
+/* ==========          UPIS REPOZITORIJUMA          ========== */
+
+.crepo-upis {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.crepo-upis input {
+  padding: 8px 10px;
+  border: 1px solid var(--crepo-border);
+  border-radius: 0;
+  color: var(--crepo-text);
+  background: var(--crepo-surface-2);
+  font: inherit;
+  font-size: 0.8rem;
+}
+
+.crepo-upis button,
+.crepo-akcije button {
+  padding: 6px 12px;
+  border: 1px solid var(--crepo-border);
+  border-radius: 0;
+  color: var(--crepo-text);
+  background: var(--crepo-surface-2);
+  font: inherit;
+  font-size: 0.76rem;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.crepo-upis > button {
+  align-self: flex-start;
+  border-color: var(--domain-accent);
+  color: var(--domain-accent);
+  background: rgba(var(--domain-accent-rgb), 0.08);
+  font-weight: 600;
+}
+
+.crepo-upis button:hover,
+.crepo-akcije button:hover {
+  border-color: var(--domain-accent);
+  color: var(--domain-accent);
+}
+
+.crepo-ponuda {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+
+/* ==========          SPISAK I ISTORIJA          ========== */
+
+.crepo-lista,
+.crepo-istorija {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.crepo-stavka {
+  display: grid;
+  gap: 6px;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease;
+}
+
+.crepo-stavka:hover {
+  border-color: var(--crepo-border);
+  background: var(--crepo-surface-2);
+}
+
+.crepo-stavka.izabrana {
+  outline: none;
+  border-color: var(--domain-accent);
+  background: rgba(var(--domain-accent-rgb), 0.08);
+}
+
+.crepo-ime {
+  padding: 0;
+  border: 0;
+  color: var(--crepo-text);
+  background: transparent;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 650;
+  text-align: left;
+  cursor: pointer;
+}
+
+.crepo-akcije {
+  display: flex;
+  gap: 6px;
+}
+
+.crepo-sha {
+  color: var(--domain-accent);
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.72rem;
+}
+
+.crepo-naslov {
+  color: var(--crepo-text);
+  font-size: 0.82rem;
+}
+
+.crepo-autor {
+  color: var(--crepo-text-muted);
+  font-size: 0.7rem;
+}
+
+
+/* ==========          ZNACKE          ========== */
+
+.crepo-znacke {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.crepo-znacka {
+  padding: 1px 7px;
+  border: 1px solid var(--crepo-border);
+  border-radius: 0;
+  color: var(--crepo-text-muted);
+  font-size: 0.68rem;
+}
+
+
+/* ==========          RAZLIKA          ========== */
+
+.crepo-panel-diff {
+  min-height: 260px;
+}
+
+.crepo-razlika {
+  flex: 1;
+  min-height: 220px;
+  overflow: auto;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.74rem;
+  line-height: 1.45;
+}
+
+
+/* ==========          USKO          ========== */
+
+@media (max-width: 900px) {
+  .crepo-grid {
+    grid-template-columns: 1fr;
+  }
+}

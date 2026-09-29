@@ -1,0 +1,7 @@
+{
+  "_comment": "Po-domenske zamene/zabrane GUI-ja za CODIUM celiju. Citaju ga i Vite (vite.cell.config.ts) i Python sklapac (core/cell/gui.py) kad build_cell pin-uje ovaj fajl kao cell-substitutions.json za CODIUM. CODIUM se NE zabranjuje (to JE domen celije); coreApi/codiumApi su dozvoljeni (relativni httpClient, isti origin). features/window NIJE zabranjen: moduli su bezbedni za nosenje (samo @tauri-apps/dockview, bez coreApi/CORE-only), a celija JESTE Tauri prozor pa workspace/preview/dock rade ili su inertni van Tauri-ja. Zamenjuje se samo CoreAssistantChat celijskim.",
+  "substitutions": {
+    "src/features/chat/CoreAssistantChat.tsx": "src/cell/CellAssistantChat.tsx"
+  },
+  "forbidden_prefixes": []
+}

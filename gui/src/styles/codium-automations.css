@@ -1,0 +1,398 @@
+/* ==========          CODIUM AUTOMATIONS          ========== */
+/*
+ * Isti ton kao codium-monitoring.css i codium-analytics.css: oštre ivice,
+ * tamna podloga, tanke linije, centriran stubac do 1200px.
+ *
+ * Crvena, žuta i zelena ostaju rezervisane za značenje. Ovde ih nose isključivo
+ * značke ishoda okidanja (greška, čekanje odobrenja, izvršeno); ništa drugo na
+ * ekranu ne sme da uzme te boje, da čovek po boji odmah zna šta je bitno.
+ */
+
+.caut-page {
+  --caut-surface: rgba(15, 21, 34, 0.6);
+  --caut-surface-2: rgba(255, 255, 255, 0.02);
+  --caut-border: rgba(148, 163, 184, 0.14);
+  --caut-text: #e2e8f0;
+  --caut-text-muted: #8b95a8;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 28px 48px;
+}
+
+
+/* ==========          ZAGLAVLJE          ========== */
+
+.caut-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.caut-eyebrow {
+  margin: 0;
+  color: var(--domain-accent);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.caut-head h1 {
+  margin: 0;
+  color: var(--caut-text);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.caut-sub {
+  margin: 0;
+  max-width: 64ch;
+  color: var(--caut-text-muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.caut-alat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.caut-alat button,
+.caut-red-alat button,
+.caut-snimi {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid var(--caut-border);
+  border-radius: 0;
+  background: var(--caut-surface-2);
+  color: var(--caut-text);
+  font-size: 0.72rem;
+  cursor: pointer;
+}
+
+.caut-alat button:hover,
+.caut-red-alat button:hover,
+.caut-snimi:not(:disabled):hover {
+  border-color: rgba(var(--domain-accent-rgb), 0.5);
+  color: var(--domain-accent);
+}
+
+.caut-snimi:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.caut-hint,
+.caut-prazno {
+  color: var(--caut-text-muted);
+  font-size: 0.74rem;
+}
+
+.caut-prazno {
+  margin: 0;
+}
+
+.caut-greska {
+  color: #f87171;
+  font-size: 0.74rem;
+}
+
+
+/* ==========          PANEL          ========== */
+/* Isti obrazac kao na Monitoring-u: naslov nosi panel u punom rasporedu, a
+   ljuska okvira kada je okvir skupljen ili u preview-u. */
+
+.caut-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid var(--caut-border);
+  border-radius: 0;
+  background: var(--caut-surface);
+}
+
+.caut-panel h2 {
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  color: #f1f5f9;
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+.sframe.is-tucked .caut-panel,
+.sframe.is-preview .caut-panel {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.sframe.is-preview .caut-panel > h2 {
+  display: none;
+}
+
+
+/* ==========          SPISAK PRAVILA          ========== */
+
+.caut-spisak,
+.caut-istorija,
+.caut-akcije {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.caut-red {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--caut-border);
+}
+
+/* Ugašeno pravilo se i dalje čita, samo se povuče — brisanje i gašenje nisu
+   isto, pa ne smeju da izgledaju isto. */
+.caut-red.ugaseno {
+  opacity: 0.5;
+}
+
+.caut-red-ime {
+  margin: 0;
+  color: var(--caut-text);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.caut-red-opis {
+  margin: 4px 0 0;
+  color: var(--caut-text-muted);
+  font-size: 0.74rem;
+  line-height: 1.6;
+}
+
+.caut-red-opis code {
+  padding: 1px 5px;
+  border: 1px solid var(--caut-border);
+  background: var(--caut-surface-2);
+  font-size: 0.7rem;
+}
+
+.caut-kad {
+  color: var(--domain-accent);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.caut-red-vreme {
+  margin: 4px 0 0;
+  color: var(--caut-text-muted);
+  font-size: 0.68rem;
+}
+
+.caut-red-alat {
+  display: flex;
+  gap: 6px;
+}
+
+.caut-brisi {
+  padding: 6px 8px;
+}
+
+.caut-prekidac input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--domain-accent);
+  cursor: pointer;
+}
+
+.caut-proba {
+  margin: 12px 0 0;
+  padding: 8px 10px;
+  border: 1px solid rgba(var(--domain-accent-rgb), 0.35);
+  background: rgba(var(--domain-accent-rgb), 0.06);
+  color: var(--caut-text);
+  font-size: 0.74rem;
+  line-height: 1.5;
+}
+
+
+/* ==========          UREĐIVAČ U TRI KORAKA          ========== */
+
+.caut-korak {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--caut-border);
+}
+
+.caut-korak-naslov {
+  margin: 0;
+  color: var(--domain-accent);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.caut-korak input[type="text"],
+.caut-korak select,
+.caut-uslov input,
+.caut-uslov select {
+  padding: 7px 10px;
+  border: 1px solid var(--caut-border);
+  border-radius: 0;
+  background: var(--caut-surface-2);
+  color: var(--caut-text);
+  font-size: 0.76rem;
+}
+
+/* Tamnu temu padajuceg spiska nosi `color-scheme` u index.css, za ceo CORE.
+   Ovde ostaje samo sopstvena strelica, da polje ne nosi sistemsku. */
+.caut-korak select,
+.caut-uslov select {
+  appearance: none;
+  padding-right: 28px;
+  background-image: linear-gradient(45deg, transparent 50%, #8b95a8 50%),
+    linear-gradient(135deg, #8b95a8 50%, transparent 50%);
+  background-position: calc(100% - 15px) calc(50% + 1px),
+    calc(100% - 10px) calc(50% + 1px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.caut-korak input:focus,
+.caut-korak select:focus,
+.caut-uslov input:focus,
+.caut-uslov select:focus {
+  outline: none;
+  border-color: rgba(var(--domain-accent-rgb), 0.6);
+}
+
+.caut-uslov {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr 1.4fr;
+  gap: 8px;
+}
+
+.caut-izraz {
+  padding: 6px 8px;
+  border: 1px solid var(--caut-border);
+  background: var(--caut-surface-2);
+  color: var(--caut-text-muted);
+  font-size: 0.72rem;
+}
+
+.caut-akcije li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--caut-border);
+}
+
+.caut-akcije li:last-child {
+  border-bottom: none;
+}
+
+.caut-akcije label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.caut-akcije input[type="checkbox"] {
+  accent-color: var(--domain-accent);
+}
+
+.caut-akcija-ime {
+  color: var(--caut-text);
+  font-size: 0.8rem;
+}
+
+.caut-akcija-opis {
+  margin: 3px 0 0 24px;
+  color: var(--caut-text-muted);
+  font-size: 0.7rem;
+}
+
+/* Žuta jer je čekanje, ne greška: akcija radi, samo staje pred čoveka. */
+.caut-odobrenje {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 6px;
+  border: 1px solid rgba(250, 204, 21, 0.4);
+  color: #facc15;
+  font-size: 0.64rem;
+}
+
+
+/* ==========          ISTORIJA OKIDANJA          ========== */
+
+.caut-istorija li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) minmax(0, 2fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--caut-border);
+  font-size: 0.74rem;
+}
+
+.caut-istorija-ime {
+  color: var(--caut-text);
+}
+
+.caut-istorija-razlog,
+.caut-istorija-vreme {
+  color: var(--caut-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.caut-znacka {
+  padding: 1px 7px;
+  border: 1px solid var(--caut-border);
+  color: var(--caut-text-muted);
+  font-size: 0.64rem;
+  white-space: nowrap;
+}
+
+.caut-znacka.done {
+  border-color: rgba(74, 222, 128, 0.4);
+  color: #4ade80;
+}
+
+.caut-znacka.waiting_approval {
+  border-color: rgba(250, 204, 21, 0.4);
+  color: #facc15;
+}
+
+.caut-znacka.failed,
+.caut-znacka.rate_limited {
+  border-color: rgba(248, 113, 113, 0.4);
+  color: #f87171;
+}
+
+
+@media (max-width: 760px) {
+  .caut-uslov {
+    grid-template-columns: 1fr;
+  }
+
+  .caut-istorija li {
+    grid-template-columns: auto 1fr;
+  }
+}

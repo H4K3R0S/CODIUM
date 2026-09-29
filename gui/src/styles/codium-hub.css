@@ -1,0 +1,1172 @@
+/* ==========          CODIUM PROJECT HUB          ========== */
+/* Boje domena preko --domain-accent-rgb (žuto). Nasleđuje CORE tokene. */
+
+.cd-page {
+  /* Donji prostor za fiksni chat dock (chub) na dnu-centru. */
+  padding: 24px 28px 72px;
+  max-width: 1440px;
+  margin: 0 auto;
+  color: var(--text-primary, #e9edf2);
+}
+
+/* ---------- zaglavlje ---------- */
+
+.cd-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.cd-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 11px;
+  color: rgba(var(--domain-accent-rgb), 0.9);
+  margin: 0 0 4px;
+}
+
+.cd-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+  color: rgb(var(--domain-accent-rgb));
+}
+
+.cd-subtitle {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--text-secondary, #9aa4b2);
+}
+
+/* ---------- aktivni projekat baner ---------- */
+
+.cd-active {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid rgba(var(--domain-accent-rgb), 0.5);
+  border-radius: 10px;
+  background: rgba(var(--domain-accent-rgb), 0.08);
+  font-size: 13px;
+}
+
+.cd-active-label {
+  color: var(--text-secondary, #9aa4b2);
+}
+
+.cd-active-name {
+  font-weight: 700;
+  color: rgb(var(--domain-accent-rgb));
+}
+
+.cd-active-clear {
+  margin-left: 4px;
+  background: none;
+  border: none;
+  color: var(--text-secondary, #9aa4b2);
+  cursor: pointer;
+  display: inline-flex;
+}
+
+.cd-active-clear:hover {
+  color: var(--text-primary, #e9edf2);
+}
+
+/* ---------- alatna traka ---------- */
+
+.cd-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.cd-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 260px;
+  min-width: 220px;
+  padding: 8px 12px;
+  border: 1px solid var(--border-soft, rgba(255, 255, 255, 0.12));
+  border-radius: 10px;
+  background: var(--surface-1, rgba(255, 255, 255, 0.04));
+}
+
+.cd-search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: inherit;
+  font-size: 14px;
+}
+
+.cd-search-clear {
+  background: none;
+  border: none;
+  color: var(--text-secondary, #9aa4b2);
+  cursor: pointer;
+  display: inline-flex;
+}
+
+.cd-filters {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.cd-filter {
+  padding: 6px 12px;
+  border: 1px solid var(--border-soft, rgba(255, 255, 255, 0.12));
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-secondary, #9aa4b2);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.cd-filter:hover {
+  color: var(--text-primary, #e9edf2);
+  border-color: rgba(var(--domain-accent-rgb), 0.5);
+}
+
+.cd-filter.active {
+  background: rgba(var(--domain-accent-rgb), 0.18);
+  border-color: rgb(var(--domain-accent-rgb));
+  color: rgb(var(--domain-accent-rgb));
+  font-weight: 600;
+}
+
+.cd-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
+  background: rgb(var(--domain-accent-rgb));
+  color: #1a1400;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.cd-btn-primary:hover {
+  filter: brightness(1.08);
+}
+
+.cd-btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cd-btn-ghost {
+  padding: 8px 16px;
+  border: 1px solid var(--border-soft, rgba(255, 255, 255, 0.14));
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-secondary, #9aa4b2);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* ---------- sekcije ---------- */
+
+.cd-section {
+  margin-top: 26px;
+}
+
+.cd-section-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.cd-section-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.cd-section-count {
+  font-size: 12px;
+  color: var(--text-secondary, #9aa4b2);
+  background: var(--surface-1, rgba(255, 255, 255, 0.06));
+  border-radius: 999px;
+  padding: 2px 9px;
+}
+
+.cd-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+/* ---------- kartica projekta ---------- */
+
+.cd-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid var(--border-soft, rgba(255, 255, 255, 0.1));
+  border-radius: 14px;
+  background: var(--surface-1, rgba(255, 255, 255, 0.04));
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.cd-card:hover {
+  border-color: rgba(var(--domain-accent-rgb), 0.6);
+  transform: translateY(-2px);
+}
+
+.cd-card.is-active {
+  border-color: rgb(var(--domain-accent-rgb));
+  box-shadow: 0 0 0 1px rgba(var(--domain-accent-rgb), 0.4);
+}
+
+.cd-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cd-badge {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+.cd-badge.client {
+  background: rgba(70, 210, 120, 0.18);
+  color: #6ee7a0;
+}
+
+.cd-badge.private {
+  background: rgba(var(--domain-accent-rgb), 0.18);
+  color: rgb(var(--domain-accent-rgb));
+}
+
+.cd-status-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--text-secondary, #9aa4b2);
+}
+
+.cd-status-dot::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.cd-status-active { color: #6ee7a0; }
+.cd-status-paused { color: #f5c518; }
+.cd-status-done { color: #7aa2ff; }
+.cd-status-archived { color: #8a94a6; }
+
+.cd-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-primary, #e9edf2);
+}
+
+.cd-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-secondary, #9aa4b2);
+}
+
+.cd-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.cd-chip {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--surface-2, rgba(255, 255, 255, 0.07));
+  color: var(--text-secondary, #9aa4b2);
+}
+
+.cd-deadline.soon {
+  color: #ff8a7a;
+  font-weight: 600;
+}
+
+.cd-card-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.cd-action {
+  flex: 1;
+  min-width: 64px;
+  padding: 6px 8px;
+  border: 1px solid var(--border-soft, rgba(255, 255, 255, 0.12));
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary, #9aa4b2);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.cd-action.primary {
+  background: rgba(var(--domain-accent-rgb), 0.16);
+  border-color: rgba(var(--domain-accent-rgb), 0.6);
+  color: rgb(var(--domain-accent-rgb));
+  font-weight: 600;
+}
+
+.cd-action:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ---------- poruke ---------- */
+
+.cd-message {
+  margin-top: 30px;
+  text-align: center;
+  color: var(--text-secondary, #9aa4b2);
+  font-size: 14px;
+}
+
+.cd-message.error {
+  color: #ff8a7a;
+}
+
+.cd-empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--text-secondary, #9aa4b2);
+  border: 1px dashed var(--border-soft, rgba(255, 255, 255, 0.14));
+  border-radius: 14px;
+}
+
+/* ---------- modal ---------- */
+
+.cd-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 20px;
+}
+
+.cd-modal {
+  width: min(480px, 100%);
+  background: var(--surface-0, #171b22);
+  border: 1px solid var(--border-soft, rgba(255, 255, 255, 0.14));
+  border-radius: 16px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.cd-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cd-modal-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.cd-modal-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary, #9aa4b2);
+  cursor: pointer;
+  display: inline-flex;
+}
+
+.cd-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--text-secondary, #9aa4b2);
+}
+
+.cd-field input,
+.cd-field select {
+  padding: 9px 11px;
+  border: 1px solid var(--border-soft, rgba(255, 255, 255, 0.14));
+  border-radius: 9px;
+  background: var(--surface-1, rgba(255, 255, 255, 0.04));
+  color: var(--text-primary, #e9edf2);
+  font-size: 14px;
+  outline: none;
+}
+
+.cd-field input:focus,
+.cd-field select:focus {
+  border-color: rgba(var(--domain-accent-rgb), 0.7);
+}
+
+.cd-field-row {
+  display: flex;
+  gap: 12px;
+}
+
+.cd-field-row .cd-field {
+  flex: 1;
+}
+
+.cd-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+/* ---------- brain panel ---------- */
+
+.cd-brain {
+  width: min(820px, 100%);
+}
+
+.cd-brain-body {
+  display: flex;
+  gap: 14px;
+  min-height: 340px;
+}
+
+.cd-brain-files {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 190px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--border-soft, rgba(255, 255, 255, 0.1));
+  padding-right: 10px;
+  overflow-y: auto;
+  max-height: 60vh;
+}
+
+.cd-brain-file {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-secondary, #9aa4b2);
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cd-brain-file:hover {
+  background: var(--surface-1, rgba(255, 255, 255, 0.05));
+  color: var(--text-primary, #e9edf2);
+}
+
+.cd-brain-file.active {
+  background: rgba(var(--domain-accent-rgb), 0.16);
+  color: rgb(var(--domain-accent-rgb));
+  font-weight: 600;
+}
+
+.cd-brain-content {
+  flex: 1;
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: var(--surface-1, rgba(0, 0, 0, 0.25));
+  color: var(--text-primary, #e9edf2);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12.5px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-y: auto;
+  max-height: 60vh;
+}
+
+.cd-brain-path {
+  margin: 6px 0 0;
+  font-size: 11px;
+  color: var(--text-secondary, #9aa4b2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.7;
+}
+
+/* ---------- tasks + beleške panel ---------- */
+
+.cd-work {
+  width: min(620px, 100%);
+}
+
+.cd-work-tabs {
+  display: flex;
+  gap: 6px;
+  border-bottom: 1px solid var(--border-soft, rgba(255, 255, 255, 0.1));
+  padding-bottom: 8px;
+}
+
+.cd-work-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  background: transparent;
+  color: var(--text-secondary, #9aa4b2);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.cd-work-tab.active {
+  color: rgb(var(--domain-accent-rgb));
+  background: rgba(var(--domain-accent-rgb), 0.12);
+  font-weight: 600;
+}
+
+.cd-work-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.cd-work-add {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.cd-work-add-note {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.cd-work-add input,
+.cd-work-add textarea {
+  flex: 1;
+  padding: 9px 11px;
+  border: 1px solid var(--border-soft, rgba(255, 255, 255, 0.14));
+  border-radius: 9px;
+  background: var(--surface-1, rgba(255, 255, 255, 0.04));
+  color: var(--text-primary, #e9edf2);
+  font-size: 14px;
+  outline: none;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.cd-work-add input:focus,
+.cd-work-add textarea:focus {
+  border-color: rgba(var(--domain-accent-rgb), 0.7);
+}
+
+/* taskovi */
+
+.cd-task-list,
+.cd-note-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cd-task {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border: 1px solid var(--border-soft, rgba(255, 255, 255, 0.1));
+  border-radius: 9px;
+  background: var(--surface-1, rgba(255, 255, 255, 0.03));
+}
+
+.cd-task.done .cd-task-title {
+  text-decoration: line-through;
+  opacity: 0.55;
+}
+
+.cd-task-check {
+  background: none;
+  border: none;
+  color: rgb(var(--domain-accent-rgb));
+  cursor: pointer;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.cd-task-title {
+  flex: 1;
+  font-size: 14px;
+}
+
+.cd-task-status {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--surface-2, rgba(255, 255, 255, 0.07));
+  color: var(--text-secondary, #9aa4b2);
+}
+
+.cd-task-status.status-done { color: #6ee7a0; }
+.cd-task-status.status-in_progress { color: #f5c518; }
+.cd-task-status.status-blocked { color: #ff8a7a; }
+
+/* beleške */
+
+.cd-note {
+  padding: 10px 12px;
+  border: 1px solid var(--border-soft, rgba(255, 255, 255, 0.1));
+  border-radius: 9px;
+  background: var(--surface-1, rgba(255, 255, 255, 0.03));
+}
+
+.cd-note-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary, #e9edf2);
+}
+
+.cd-note-body {
+  margin: 5px 0 0;
+  font-size: 13px;
+  color: var(--text-secondary, #9aa4b2);
+  white-space: pre-wrap;
+}
+
+
+/* ==========          AGENDA I ROKOVI (F8)          ========== */
+
+.cd-agenda {
+  margin: 8px 0 26px;
+  padding: 18px;
+  border: 1px solid var(--border-soft, rgba(255, 255, 255, 0.12));
+  border-radius: 14px;
+  background: var(--surface-1, rgba(255, 255, 255, 0.03));
+}
+
+.cd-agenda-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.cd-agenda-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 650;
+  color: var(--text-primary, #e9edf2);
+}
+
+.cd-agenda-badge {
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #ffd7d7;
+  background: rgba(220, 60, 60, 0.22);
+  border: 1px solid rgba(220, 60, 60, 0.4);
+}
+
+.cd-agenda-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cd-agenda-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  border-radius: 10px;
+  background: var(--surface-2, rgba(255, 255, 255, 0.05));
+}
+
+.cd-agenda-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary, #9aa4b2);
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.cd-agenda-tab.active {
+  background: rgba(var(--domain-accent-rgb), 0.18);
+  color: rgb(var(--domain-accent-rgb));
+}
+
+.cd-agenda-refresh {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--border-soft, rgba(255, 255, 255, 0.12));
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary, #9aa4b2);
+  cursor: pointer;
+}
+
+.cd-agenda-refresh:hover {
+  color: rgb(var(--domain-accent-rgb));
+  border-color: rgba(var(--domain-accent-rgb), 0.5);
+}
+
+.cd-agenda-empty {
+  margin: 6px 0;
+  color: var(--text-secondary, #9aa4b2);
+  font-size: 0.9rem;
+}
+
+.cd-agenda-empty.error {
+  color: #ff9a9a;
+}
+
+/* --- Lista grupisana po hitnosti --- */
+
+.cd-agenda-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cd-agenda-bucket-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  font-size: 0.78rem;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary, #9aa4b2);
+}
+
+.cd-agenda-bucket.overdue .cd-agenda-bucket-title {
+  color: #ff9a9a;
+}
+
+.cd-agenda-bucket-count {
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  color: var(--text-secondary, #9aa4b2);
+  background: var(--surface-2, rgba(255, 255, 255, 0.06));
+}
+
+/* --- Jedan red agende --- */
+
+.cd-agenda-row {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 9px 11px;
+  border: 1px solid var(--border-soft, rgba(255, 255, 255, 0.08));
+  border-radius: 10px;
+  background: var(--surface-1, rgba(255, 255, 255, 0.03));
+  margin-bottom: 6px;
+}
+
+.cd-agenda-row.overdue {
+  border-color: rgba(220, 60, 60, 0.35);
+  background: rgba(220, 60, 60, 0.06);
+}
+
+.cd-agenda-kind {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  color: rgb(var(--domain-accent-rgb));
+  background: rgba(var(--domain-accent-rgb), 0.14);
+}
+
+.cd-agenda-kind.kind-project {
+  color: #ffcf87;
+  background: rgba(255, 190, 90, 0.14);
+}
+
+.cd-agenda-kind.kind-note {
+  color: #a9d0ff;
+  background: rgba(120, 170, 255, 0.14);
+}
+
+.cd-agenda-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  flex: 1;
+}
+
+.cd-agenda-title {
+  font-size: 0.9rem;
+  color: var(--text-primary, #e9edf2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cd-agenda-sub {
+  font-size: 0.72rem;
+  color: var(--text-secondary, #9aa4b2);
+}
+
+.cd-agenda-when {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  font-size: 0.78rem;
+  color: var(--text-secondary, #9aa4b2);
+}
+
+.cd-agenda-row.overdue .cd-agenda-when {
+  color: #ff9a9a;
+}
+
+/* --- Mesečni grid --- */
+
+.cd-month-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.cd-month-label {
+  min-width: 160px;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary, #e9edf2);
+}
+
+.cd-month-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--border-soft, rgba(255, 255, 255, 0.12));
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary, #9aa4b2);
+  cursor: pointer;
+}
+
+.cd-month-nav:hover {
+  color: rgb(var(--domain-accent-rgb));
+  border-color: rgba(var(--domain-accent-rgb), 0.5);
+}
+
+.cd-month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.cd-month-weekday {
+  padding: 4px 0;
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-secondary, #9aa4b2);
+}
+
+.cd-month-cell {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 5px 7px;
+  border: 1px solid var(--border-soft, rgba(255, 255, 255, 0.07));
+  border-radius: 8px;
+  background: var(--surface-1, rgba(255, 255, 255, 0.02));
+  color: var(--text-secondary, #9aa4b2);
+  font-size: 0.8rem;
+  cursor: default;
+}
+
+.cd-month-cell.empty {
+  border: none;
+  background: transparent;
+}
+
+.cd-month-cell.has-items {
+  cursor: pointer;
+  color: var(--text-primary, #e9edf2);
+}
+
+.cd-month-cell.today {
+  border-color: rgba(var(--domain-accent-rgb), 0.6);
+}
+
+.cd-month-cell.selected {
+  background: rgba(var(--domain-accent-rgb), 0.16);
+  border-color: rgb(var(--domain-accent-rgb));
+}
+
+.cd-month-dot {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: #1a1400;
+  background: rgb(var(--domain-accent-rgb));
+}
+
+.cd-month-dot.overdue {
+  color: #fff;
+  background: rgb(220, 60, 60);
+}
+
+.cd-month-day {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-soft, rgba(255, 255, 255, 0.08));
+}
+
+.cd-month-day-title {
+  margin: 0 0 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary, #e9edf2);
+}
+
+
+/* ==========          PREVIEW MODAL (F7)          ========== */
+
+.cd-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 4px 0 8px;
+}
+
+.cd-field-label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.8rem;
+  color: var(--text-secondary, #9aa4b2);
+}
+
+.cd-preview-devices {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.cd-preview-device {
+  padding: 7px 14px;
+  border: 1px solid var(--border-soft, rgba(255, 255, 255, 0.14));
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary, #9aa4b2);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.cd-preview-device:hover {
+  color: var(--text-primary, #e9edf2);
+  border-color: rgba(var(--domain-accent-rgb), 0.5);
+}
+
+.cd-preview-device.active {
+  background: rgba(var(--domain-accent-rgb), 0.18);
+  border-color: rgb(var(--domain-accent-rgb));
+  color: rgb(var(--domain-accent-rgb));
+}
+
+.cd-preview-size {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary, #9aa4b2);
+}
+
+.cd-preview-size strong {
+  color: var(--text-primary, #e9edf2);
+}
+
+.cd-preview-note {
+  margin: 0;
+  padding: 8px 11px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  color: #ffd7a8;
+  background: rgba(255, 180, 90, 0.1);
+  border: 1px solid rgba(255, 180, 90, 0.25);
+}
+
+.cd-preview-message {
+  margin: 0;
+  font-size: 0.83rem;
+  color: rgb(var(--domain-accent-rgb));
+}
+
+
+/* ==========          OŠTRE IVICE — CODIUM DASHBOARD          ========== */
+/* Pravougaoni okviri (kartice, paneli, kontrole, modal) bez zaobljenja.
+   Kružne pilule (status tačke, brojači 999px/50%) namerno ostaju okrugle. */
+
+.cd-page .cd-card,
+.cd-page .cd-badge,
+.cd-page .cd-search,
+.cd-page .cd-filter,
+.cd-page .cd-action,
+.cd-page .cd-btn-primary,
+.cd-page .cd-btn-ghost,
+.cd-page .cd-chip,
+.cd-page .cd-field input,
+.cd-page .cd-field select,
+.cd-page .cd-empty,
+.cd-page .cd-message,
+.cd-page .cd-active,
+.cd-page .cd-agenda,
+.cd-page .cd-agenda-row,
+.cd-page .cd-agenda-tabs,
+.cd-page .cd-agenda-tab,
+.cd-page .cd-agenda-refresh,
+.cd-page .cd-month-cell,
+.cd-page .cd-month-nav,
+.cd-modal-overlay .cd-modal,
+.cd-modal-overlay .cd-field input,
+.cd-modal-overlay .cd-field select,
+.cd-modal-overlay .cd-field textarea,
+.cd-modal-overlay .cd-preview-device,
+.cd-modal-overlay .cd-preview-note,
+.cd-modal-overlay .cd-preview-message,
+.cd-modal-overlay .cd-modal-close,
+.cd-modal-overlay .cd-btn-primary,
+.cd-modal-overlay .cd-action {
+  border-radius: 0;
+}
+
+
+/* ==========          DEV HOST (auto lokalni server)          ========== */
+
+.cd-form-hint {
+  margin: -4px 0 0;
+  font-size: 0.8rem;
+  color: rgb(var(--domain-accent-rgb));
+}
+
+.cd-preview-statusrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.cd-host-badge {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.cd-host-badge.on {
+  color: #b8f5c2;
+  background: rgba(60, 200, 100, 0.16);
+  border: 1px solid rgba(60, 200, 100, 0.4);
+}
+
+.cd-host-badge.off {
+  color: var(--text-secondary, #9aa4b2);
+  background: var(--surface-2, rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--border-soft, rgba(255, 255, 255, 0.12));
+}
+
+
+/* ==========          PAMETAN RASPORED          ========== */
+/*
+ * Stranu vozi `useSmartLayout`, isti kao na kontrolnoj tabli: agenda i sekcije
+ * projekata su okviri koji se sklapaju u stubac uz levu ivicu. U preview-u
+ * naslov nosi sam okvir, pa ga sekcija ne ponavlja.
+ */
+
+.sframe.is-preview .cd-section > .cd-section-head {
+  display: none;
+}
+
+/*
+ * Skupljena strana je pozadina razgovoru: alatna traka (pretraga, filteri,
+ * dodavanje) nema smisla u stupcu od 210px, pa se sklanja dok razgovor traje i
+ * vraca cim se raspored otvori.
+ */
+.cd-page.is-tucked .cd-toolbar {
+  display: none;
+}

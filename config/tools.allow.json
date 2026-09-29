@@ -1,0 +1,62 @@
+{
+  "_comment": "Allowlist za core/cell/executor.py. Nepoznat alat (nije ovde) = greska, NE izvrsava se (fail-closed). CODIUM alati ne cilja spoljnu 'metu' (nema scope-branu KALIMA tipa) — rizik dolazi iz matrice 01-ARHITEKTURA/05-approval-gates.md ('pisanje novog koda na disk' = MEDIUM). [CAVEAT] Klasifikacija je PO ALATU, ne po pod-komandi: `git push na javni remote` je u matrici HIGH, ali ovaj sloj (F5) jos ne razlikuje `git status` od `git push` — to je per-domen follow-up (v. izvestaj F5) pre nego sto se git stvarno ozici kroz Executor.",
+  "domain": "codium",
+  "version": 1,
+  "updated": "2026-09-18",
+  "tools": {
+    "rg": {
+      "binary": "rg",
+      "risk": "LOW",
+      "targets_network": false,
+      "timeout_s": 30,
+      "action": "codium.rg",
+      "status": "verified",
+      "note": "Citanje/pretraga koda — read-only."
+    },
+    "git": {
+      "binary": "git",
+      "risk": "MEDIUM",
+      "targets_network": false,
+      "timeout_s": 60,
+      "action": "codium.git",
+      "status": "verified",
+      "note": "[CAVEAT] Danas jedna klasifikacija za sve pod-komande. `push` na javni remote treba da bude HIGH — dodati pod-komandnu klasifikaciju pre stvarnog ozicavanja."
+    },
+    "python3": {
+      "binary": "python3",
+      "risk": "MEDIUM",
+      "targets_network": false,
+      "timeout_s": 120,
+      "action": "codium.python3",
+      "status": "verified",
+      "note": "Izvrsavanje proizvoljnog koda — MEDIUM, audit obavezan."
+    },
+    "node": {
+      "binary": "node",
+      "risk": "MEDIUM",
+      "targets_network": false,
+      "timeout_s": 120,
+      "action": "codium.node",
+      "status": "verified",
+      "note": "Izvrsavanje proizvoljnog koda — MEDIUM, audit obavezan."
+    },
+    "sqlite3": {
+      "binary": "sqlite3",
+      "risk": "MEDIUM",
+      "targets_network": false,
+      "timeout_s": 30,
+      "action": "codium.sqlite3",
+      "status": "verified",
+      "note": "Moze pisati bazu — MEDIUM."
+    },
+    "pytest": {
+      "binary": "pytest",
+      "risk": "MEDIUM",
+      "targets_network": false,
+      "timeout_s": 300,
+      "action": "codium.pytest",
+      "status": "verified",
+      "note": "Pokrece test-kod projekta — moguce nuspojave, MEDIUM."
+    }
+  }
+}

@@ -1,0 +1,379 @@
+/* ==========          CODIUM DEPLOYMENTS          ========== */
+/*
+ * Isti ton kao codium-access.css i codium-agents.css: ostre ivice, tamna
+ * podloga, tanke linije, centriran stubac do 1200px. Strana zivi u pametnom
+ * rasporedu oko chata (smart-layout.css).
+ *
+ * Crvena, zuta i zelena su rezervisane za znacenje u celom domenu — neuspeh,
+ * cekanje na coveka, uspeh. Zato `pending` (ceka odobrenje) nosi zutu, a ne
+ * neutralnu boju: to nije mirno stanje nego posao koji stoji.
+ */
+
+.cdep-page {
+  --cdep-surface: rgba(15, 21, 34, 0.6);
+  --cdep-surface-2: rgba(255, 255, 255, 0.02);
+  --cdep-border: rgba(148, 163, 184, 0.14);
+  --cdep-text: #e2e8f0;
+  --cdep-text-muted: #8b95a8;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 28px 48px;
+}
+
+
+/* ==========          ZAGLAVLJE          ========== */
+
+.cdep-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cdep-eyebrow {
+  margin: 0;
+  color: var(--domain-accent);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cdep-head h1 {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.cdep-sub {
+  margin: 0;
+  color: var(--cdep-text-muted);
+  font-size: 0.82rem;
+}
+
+
+/* ==========          PORUKE          ========== */
+
+.cdep-error,
+.cdep-greska {
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  border-radius: 0;
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.08);
+  font-size: 0.8rem;
+}
+
+.cdep-hint {
+  margin: 0;
+  color: var(--cdep-text-muted);
+  font-size: 0.78rem;
+}
+
+/* Isporuka koja ceka coveka nije kvar — zuta, ne crvena. */
+.cdep-ceka {
+  margin: 0;
+  padding: 8px 12px;
+  border: 1px solid rgba(250, 204, 21, 0.4);
+  border-radius: 0;
+  color: #facc15;
+  background: rgba(250, 204, 21, 0.08);
+  font-size: 0.76rem;
+}
+
+
+/* ==========          RASPORED          ========== */
+
+.cdep-grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 360px);
+  gap: 16px;
+  align-items: start;
+}
+
+/* Istorija uzima ceo red ispod. */
+.cdep-grid > .sframe:nth-child(3) {
+  grid-column: 1 / -1;
+}
+
+
+/* ==========          PANEL          ========== */
+
+.cdep-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid var(--cdep-border);
+  border-radius: 0;
+  background: var(--cdep-surface);
+}
+
+.cdep-panel h2 {
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  color: #f1f5f9;
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+/* U skupljenom/preview stanju naslov nosi ljuska okvira. */
+.sframe.is-tucked .cdep-panel,
+.sframe.is-preview .cdep-panel {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.sframe.is-preview .cdep-panel > h2 {
+  display: none;
+}
+
+
+/* ==========          KARTICA CILJA          ========== */
+
+.cdep-kartice {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cdep-kartica {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--cdep-border);
+  border-radius: 0;
+  background: var(--cdep-surface-2);
+}
+
+.cdep-kartica-glava {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cdep-kartica-glava h3 {
+  margin: 0;
+  color: var(--cdep-text);
+  font-size: 0.88rem;
+  font-weight: 650;
+}
+
+.cdep-tip {
+  color: var(--cdep-text-muted);
+  font-size: 0.72rem;
+}
+
+.cdep-zdravlje {
+  padding: 1px 7px;
+  border: 1px solid currentColor;
+  border-radius: 0;
+  font-size: 0.68rem;
+}
+
+.cdep-zdravlje.zdrav { color: #4ade80; }
+.cdep-zdravlje.bolestan { color: #f87171; }
+
+.cdep-trenutno {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--cdep-text);
+}
+
+.cdep-sha {
+  color: var(--domain-accent);
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.72rem;
+}
+
+.cdep-vreme,
+.cdep-detalj {
+  color: var(--cdep-text-muted);
+  font-size: 0.72rem;
+}
+
+.cdep-detalj {
+  overflow: hidden;
+  max-width: 40ch;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* ==========          AKCIJE          ========== */
+
+.cdep-akcije {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Labela postoji radi citaca ekrana; sam `select` je dovoljno opisan okom. */
+.cdep-skriveno {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.cdep-akcije select,
+.cdep-obrazac select,
+.cdep-obrazac input {
+  padding: 6px 10px;
+  border: 1px solid var(--cdep-border);
+  border-radius: 0;
+  color: var(--cdep-text);
+  background: var(--cdep-surface-2);
+  font: inherit;
+  font-size: 0.78rem;
+}
+
+.cdep-akcije button,
+.cdep-obrazac button,
+.cdep-istorija button {
+  padding: 6px 12px;
+  border: 1px solid var(--domain-accent);
+  border-radius: 0;
+  color: var(--domain-accent);
+  background: rgba(var(--domain-accent-rgb), 0.08);
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.cdep-akcije button:disabled {
+  border-color: var(--cdep-border);
+  color: var(--cdep-text-muted);
+  background: transparent;
+  cursor: not-allowed;
+}
+
+/* Brisanje cilja nije glavni potez na kartici — ne sme da nosi akcent. */
+.cdep-akcije button.cdep-ukloni {
+  margin-left: auto;
+  border-color: var(--cdep-border);
+  color: var(--cdep-text-muted);
+  background: transparent;
+  font-weight: 400;
+}
+
+.cdep-akcije button.cdep-ukloni:hover {
+  border-color: #f87171;
+  color: #f87171;
+}
+
+
+/* ==========          OBRAZAC NOVOG CILJA          ========== */
+
+.cdep-obrazac {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cdep-obrazac label {
+  margin-top: 4px;
+  color: var(--cdep-text-muted);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cdep-obrazac button {
+  align-self: flex-start;
+  margin-top: 10px;
+}
+
+
+/* ==========          ISTORIJA          ========== */
+
+.cdep-istorija {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cdep-stavka {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  color: var(--cdep-text);
+  font-size: 0.8rem;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease;
+}
+
+.cdep-stavka:hover {
+  border-color: var(--cdep-border);
+  background: var(--cdep-surface-2);
+}
+
+.cdep-cilj {
+  font-weight: 650;
+}
+
+.cdep-run {
+  color: var(--cdep-text-muted);
+  font-size: 0.74rem;
+}
+
+.cdep-istorija button {
+  margin-left: auto;
+}
+
+
+/* ==========          ZNACKE          ========== */
+
+.cdep-znacka {
+  padding: 1px 7px;
+  border: 1px solid currentColor;
+  border-radius: 0;
+  font-size: 0.68rem;
+}
+
+.cdep-znacka.success { color: #4ade80; }
+.cdep-znacka.failed { color: #f87171; }
+.cdep-znacka.running { color: #60a5fa; }
+/* Cekanje na coveka nije kvar, ali ni mirno stanje — posao stoji. */
+.cdep-znacka.pending { color: #facc15; }
+.cdep-znacka.rolled_back,
+.cdep-znacka.nepoznato { color: var(--cdep-text-muted); }
+
+
+/* ==========          USKO          ========== */
+
+@media (max-width: 900px) {
+  .cdep-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,15 @@
+.venv/
+data/
+*.log
+__pycache__/
+*.pyc
+gui/node_modules/
+gui/dist/
+.CODIUM.staging/
+.CODIUM.old/
+
+# Runtime RAG-log interakcija Agenta (ingestuje se u RAG; nije izvor)
+.ai/atomi/logs/
+
+# tajna — samo lokalno (secret_guard)
+config/tmdb.json

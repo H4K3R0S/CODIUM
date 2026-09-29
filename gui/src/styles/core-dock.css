@@ -1,0 +1,201 @@
+/* ==========          CODIUM DOCKING LAYOUT          ========== */
+
+.cdk-shell {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.cdk-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--border-soft, rgba(255, 255, 255, 0.1));
+  background: var(--surface-1, rgba(255, 255, 255, 0.03));
+  flex-wrap: wrap;
+}
+
+.cdk-toolbar-label {
+  font-size: 0.72rem;
+  color: var(--text-secondary, #9aa4b2);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-right: 2px;
+}
+
+.cdk-add-btn,
+.cdk-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  border: 1px solid var(--border-soft, rgba(255, 255, 255, 0.14));
+  border-radius: 0;
+  background: transparent;
+  color: var(--text-secondary, #9aa4b2);
+  font-size: 0.74rem;
+  cursor: pointer;
+}
+
+.cdk-add-btn:hover,
+.cdk-reset-btn:hover {
+  color: rgb(var(--domain-accent-rgb));
+  border-color: rgba(var(--domain-accent-rgb), 0.5);
+}
+
+.cdk-reset-btn {
+  margin-left: auto;
+}
+
+/* --- preseti rasporeda (D3) --- */
+
+.cdk-presets {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--border-soft, rgba(255, 255, 255, 0.08));
+  background: var(--surface-1, rgba(255, 255, 255, 0.02));
+  flex-wrap: wrap;
+}
+
+.cdk-preset-input {
+  width: 130px;
+  padding: 3px 7px;
+  border: 1px solid var(--border-soft, rgba(255, 255, 255, 0.14));
+  border-radius: 0;
+  background: transparent;
+  color: var(--text-primary, #e9edf2);
+  font-size: 0.74rem;
+}
+
+.cdk-preset-input:focus {
+  outline: none;
+  border-color: rgba(var(--domain-accent-rgb), 0.6);
+}
+
+.cdk-preset-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-soft, rgba(255, 255, 255, 0.14));
+}
+
+.cdk-preset-apply {
+  padding: 3px 8px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary, #9aa4b2);
+  font-size: 0.74rem;
+  cursor: pointer;
+}
+
+.cdk-preset-apply:hover {
+  color: rgb(var(--domain-accent-rgb));
+}
+
+.cdk-preset-del {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 5px;
+  background: transparent;
+  border: none;
+  border-left: 1px solid var(--border-soft, rgba(255, 255, 255, 0.14));
+  color: var(--text-secondary, #9aa4b2);
+  cursor: pointer;
+}
+
+.cdk-preset-del:hover {
+  color: #ff6b6b;
+}
+
+.cdk-presets-io {
+  margin-left: auto;
+}
+
+.cdk-dock {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+/* --- sadržaj panela --- */
+
+.cdk-placeholder,
+.cdk-info {
+  padding: 14px;
+  color: var(--text-secondary, #9aa4b2);
+  font-size: 0.85rem;
+  height: 100%;
+  overflow: auto;
+}
+
+/* D1: paneli koji nose modalni sadržaj (Tasks/Brain) — skrol u okviru panela.
+   Sadržaj se renderuje bez cd-modal kutije, pa panel preuzima visinu/skrol. */
+.cdk-panel-scroll {
+  height: 100%;
+  overflow: auto;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.cdk-hint {
+  margin-top: 6px;
+  font-size: 0.78rem;
+  opacity: 0.8;
+}
+
+.cdk-info dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 12px;
+  margin: 0 0 10px;
+}
+
+.cdk-info dt {
+  color: var(--text-secondary, #9aa4b2);
+  font-size: 0.78rem;
+}
+
+.cdk-info dd {
+  margin: 0;
+  color: var(--text-primary, #e9edf2);
+  font-size: 0.82rem;
+}
+
+.cdk-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* --- dockview tema u CORE stil (accent) --- */
+
+.cdk-dock .dv-dockview {
+  --dv-tab-active-background-color: rgba(var(--domain-accent-rgb), 0.16);
+  --dv-activegroup-visiblepanel-tab-background-color: rgba(
+    var(--domain-accent-rgb),
+    0.16
+  );
+  --dv-tabs-and-actions-container-background-color: var(
+    --surface-1,
+    rgba(255, 255, 255, 0.03)
+  );
+}
+
+
+/* ==========          SINHRONIZACIJA TEME SA FIKSNIM (providno)          ========== */
+/* Docking paneli providni kao i fiksni; editor 50% nosi .cde-editor-wrap. */
+
+.cdk-dock .dv-dockview,
+.cdk-dock .dv-groupview,
+.cdk-dock .dv-content-container,
+.cdk-dock .dv-void-container,
+.cdk-dock .dv-tabs-and-actions-container {
+  background: transparent !important;
+}

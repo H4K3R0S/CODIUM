@@ -1,0 +1,290 @@
+/* ==========          CODIUM INTEGRATIONS          ========== */
+/*
+ * Isti ton kao codium-automations.css i codium-monitoring.css: oštre ivice,
+ * tamna podloga, tanke linije, centriran stubac do 1200px.
+ *
+ * Crveno i zeleno nose samo stanje veze (`ok` / `error`), jer je to jedina
+ * stvar na ekranu koja znači „radi“ ili „ne radi“. Neprovereno je sivo, ne
+ * žuto: konektor koji niko nije testirao nije u kvaru, samo se ne zna.
+ */
+
+.cint-page {
+  --cint-surface: rgba(15, 21, 34, 0.6);
+  --cint-surface-2: rgba(255, 255, 255, 0.02);
+  --cint-border: rgba(148, 163, 184, 0.14);
+  --cint-text: #e2e8f0;
+  --cint-text-muted: #8b95a8;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 28px 48px;
+}
+
+
+/* ==========          ZAGLAVLJE          ========== */
+
+.cint-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cint-eyebrow {
+  margin: 0;
+  color: var(--domain-accent);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cint-head h1 {
+  margin: 0;
+  color: var(--cint-text);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.cint-sub {
+  margin: 0;
+  max-width: 64ch;
+  color: var(--cint-text-muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.cint-alat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.cint-alat button,
+.cint-kartica footer button,
+.cint-tajna button,
+.cint-snimi {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid var(--cint-border);
+  border-radius: 0;
+  background: var(--cint-surface-2);
+  color: var(--cint-text);
+  font-size: 0.72rem;
+  cursor: pointer;
+}
+
+.cint-alat button:hover,
+.cint-kartica footer button:hover,
+.cint-tajna button:hover,
+.cint-snimi:not(:disabled):hover {
+  border-color: rgba(var(--domain-accent-rgb), 0.5);
+  color: var(--domain-accent);
+}
+
+.cint-snimi:disabled,
+.cint-kartica footer button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.cint-hint,
+.cint-prazno {
+  margin: 0;
+  color: var(--cint-text-muted);
+  font-size: 0.74rem;
+}
+
+.cint-greska {
+  margin: 0;
+  color: #f87171;
+  font-size: 0.74rem;
+}
+
+
+/* ==========          PANEL          ========== */
+
+.cint-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid var(--cint-border);
+  border-radius: 0;
+  background: var(--cint-surface);
+}
+
+.cint-panel h2 {
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  color: #f1f5f9;
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+.sframe.is-tucked .cint-panel,
+.sframe.is-preview .cint-panel {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.sframe.is-preview .cint-panel > h2 {
+  display: none;
+}
+
+
+/* ==========          KARTICE          ========== */
+
+.cint-mreza {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.cint-kartica {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px;
+  border: 1px solid var(--cint-border);
+  background: var(--cint-surface-2);
+}
+
+.cint-kartica header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--domain-accent);
+}
+
+.cint-kartica h3 {
+  flex: 1;
+  margin: 0;
+  color: var(--cint-text);
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.cint-znacka {
+  padding: 1px 7px;
+  border: 1px solid var(--cint-border);
+  color: var(--cint-text-muted);
+  font-size: 0.64rem;
+}
+
+.cint-znacka.ok {
+  border-color: rgba(74, 222, 128, 0.4);
+  color: #4ade80;
+}
+
+.cint-znacka.error {
+  border-color: rgba(248, 113, 113, 0.4);
+  color: #f87171;
+}
+
+.cint-vrsta,
+.cint-vreme,
+.cint-upotreba {
+  margin: 0;
+  color: var(--cint-text-muted);
+  font-size: 0.7rem;
+}
+
+.cint-tajna {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0 0;
+  color: var(--cint-text);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+}
+
+.cint-tajna button {
+  margin-left: auto;
+  padding: 3px 8px;
+  letter-spacing: normal;
+}
+
+.cint-proba {
+  margin: 4px 0 0;
+  font-size: 0.72rem;
+}
+
+.cint-proba.ok {
+  color: #4ade80;
+}
+
+.cint-proba.pao {
+  color: #f87171;
+}
+
+.cint-kartica footer {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.cint-kartica footer button:first-child {
+  flex: 1;
+  justify-content: center;
+}
+
+
+/* ==========          FORMA          ========== */
+
+.cint-forma {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 460px;
+}
+
+.cint-forma label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cint-forma label > span {
+  color: var(--cint-text-muted);
+  font-size: 0.7rem;
+}
+
+.cint-forma label em {
+  font-style: normal;
+  opacity: 0.7;
+}
+
+.cint-forma input,
+.cint-forma select {
+  padding: 7px 10px;
+  border: 1px solid var(--cint-border);
+  border-radius: 0;
+  background: var(--cint-surface-2);
+  color: var(--cint-text);
+  font-size: 0.76rem;
+}
+
+/* Tamnu temu padajućeg spiska nosi `color-scheme` u index.css, za ceo CORE. */
+.cint-forma select {
+  cursor: pointer;
+}
+
+.cint-forma input:focus,
+.cint-forma select:focus {
+  outline: none;
+  border-color: rgba(var(--domain-accent-rgb), 0.6);
+}
+
+.cint-snimi {
+  align-self: flex-start;
+  margin-top: 4px;
+}

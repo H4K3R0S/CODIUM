@@ -1,0 +1,70 @@
+/* ==========          CODIUM CHAT (izgled domena)          ========== */
+/*
+ * Konstrukcija okvira je CORE-ova (ChatDock + CoreChat) — polozaji, alatke i
+ * ponasanje su isti u svim domenima. Ovde stoji samo izgled: CODIUM je ostar
+ * (bez zaobljenja) i tamniji, kakav je i bio pre nego sto je presao na deljeni
+ * okvir. Dva okvira su se razilazila u ponasanju; dva stila ne moraju.
+ */
+
+/* ==========          CODIUM: CHAT UZ DONJU IVICU PROZORA          ========== */
+/*
+ * CODIUM dashboard se skroluje, pa je chat na kraju toka bio ispod pregiba —
+ * do njega se moralo doskrolovati. Zato je ovde fiksiran uz dno prozora, kao
+ * dock domena; `left` prati sidebar po istom pravilu kao `.domain-dock`.
+ *
+ * Dashboard za to dobija donji razmak visine chata (u codium-dashboard.css, uz
+ * ostatak njegovog rasporeda), da poslednje kartice mogu da se podignu iznad
+ * njega umesto da ostanu zauvek pokrivene.
+ */
+
+.cdock.is-codium.pos-bottom {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 0;
+  z-index: 40;
+  height: min(520px, 58vh);
+}
+
+.core-layout.sidebar-visible .cdock.is-codium.pos-bottom {
+  left: 240px;
+}
+
+.core-layout.sidebar-collapsed .cdock.is-codium.pos-bottom {
+  left: 12px;
+}
+
+.cdock.is-codium.pos-right {
+  border-radius: 0;
+  border-left-color: rgba(255, 255, 255, 0.14);
+}
+
+.cdock-handle.is-codium {
+  border-radius: 0;
+  background: rgba(14, 18, 25, 0.94);
+}
+
+.core-chat.is-codium .chat-input {
+  border-radius: 0;
+  background: rgba(11, 14, 19, 0.72);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+}
+
+.core-chat.is-codium .chat-suggestion {
+  border-radius: 0;
+}
+
+.core-chat.is-codium .chat-select-menu,
+.core-chat.is-codium .chat-select-option {
+  border-radius: 0;
+}
+
+.core-chat.is-codium .chat-tool-button,
+.core-chat.is-codium .chat-send-button {
+  border-radius: 0;
+}
+
+.core-chat.is-codium .chat-bubble {
+  border-radius: 0;
+}

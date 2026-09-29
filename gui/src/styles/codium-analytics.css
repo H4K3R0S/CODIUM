@@ -1,0 +1,371 @@
+/* ==========          CODIUM ANALYTICS          ========== */
+/*
+ * Isti ton kao codium-access.css i codium-agents.css: ostre ivice, tamna
+ * podloga, tanke linije, centriran stubac do 1200px.
+ *
+ * Grafikoni nose najvise DVE serije, pa nema kategorijske palete: prva je
+ * akcent domena, druga neutralna. Crvena, zuta i zelena ostaju rezervisane za
+ * znacenje (promena nagore/nadole) i nisu boja podatka.
+ */
+
+.cana-page {
+  --cana-surface: rgba(15, 21, 34, 0.6);
+  --cana-surface-2: rgba(255, 255, 255, 0.02);
+  --cana-border: rgba(148, 163, 184, 0.14);
+  --cana-text: #e2e8f0;
+  --cana-text-muted: #8b95a8;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 28px 48px;
+}
+
+
+/* ==========          ZAGLAVLJE          ========== */
+
+.cana-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cana-eyebrow {
+  margin: 0;
+  color: var(--domain-accent);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cana-head h1 {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.cana-sub {
+  margin: 0;
+  color: var(--cana-text-muted);
+  font-size: 0.82rem;
+}
+
+.cana-alat {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+
+/* ==========          PORUKE          ========== */
+
+.cana-error {
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  border-radius: 0;
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.08);
+  font-size: 0.8rem;
+}
+
+.cana-hint {
+  margin: 0;
+  color: var(--cana-text-muted);
+  font-size: 0.76rem;
+}
+
+
+/* ==========          PREKIDACI          ========== */
+
+.cana-tabovi {
+  display: flex;
+  gap: 4px;
+}
+
+.cana-tabovi button,
+.cana-alat > button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border: 1px solid var(--cana-border);
+  border-radius: 0;
+  color: var(--cana-text-muted);
+  background: transparent;
+  font: inherit;
+  font-size: 0.74rem;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.cana-tabovi button:hover,
+.cana-alat > button:hover {
+  border-color: var(--domain-accent);
+  color: var(--domain-accent);
+}
+
+.cana-tabovi button.izabran {
+  border-color: var(--domain-accent);
+  color: var(--domain-accent);
+  background: rgba(var(--domain-accent-rgb), 0.08);
+  font-weight: 600;
+}
+
+
+/* ==========          PLOCICE          ========== */
+
+.cana-plocice {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.cana-plocica {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px;
+  border: 1px solid var(--cana-border);
+  border-radius: 0;
+  background: var(--cana-surface);
+}
+
+.cana-plocica-ime {
+  margin: 0;
+  color: var(--cana-text-muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Broj je ono zbog cega plocica postoji — sve ostalo je manje od njega. */
+.cana-plocica-broj {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.cana-promena {
+  margin: 0;
+  font-size: 0.68rem;
+}
+
+/* Vise i manje nisu po sebi dobro ni lose (vise pokretanja je dobro, vise
+   troska nije), pa promena nosi smer bez suda — neutralan ton, ne crveno/zeleno. */
+.cana-promena.gore,
+.cana-promena.dole,
+.cana-promena.isto {
+  color: var(--cana-text-muted);
+}
+
+
+/* ==========          RASPORED          ========== */
+
+.cana-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+
+/* ==========          PANEL          ========== */
+
+.cana-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 18px;
+  border: 1px solid var(--cana-border);
+  border-radius: 0;
+  background: var(--cana-surface);
+}
+
+.cana-panel h2 {
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  color: #f1f5f9;
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+/* U skupljenom/preview stanju naslov nosi ljuska okvira. */
+.sframe.is-tucked .cana-panel,
+.sframe.is-preview .cana-panel {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.sframe.is-preview .cana-panel > h2 {
+  display: none;
+}
+
+
+/* ==========          IZVESTAJ          ========== */
+
+.cana-izvestaj {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cana-izvestaj-glava {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.cana-izvestaj-glava h3 {
+  margin: 0;
+  color: var(--cana-text);
+  font-size: 0.84rem;
+  font-weight: 650;
+}
+
+.cana-izvoz {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--cana-text-muted);
+  font-size: 0.68rem;
+  text-decoration: none;
+}
+
+.cana-izvoz:hover {
+  color: var(--domain-accent);
+}
+
+.cana-opis {
+  margin: 0;
+  color: var(--cana-text-muted);
+  font-size: 0.72rem;
+}
+
+
+/* ==========          GRAFIKON          ========== */
+
+.cana-grafikon {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  /* Sirok grafikon skroluje u SVOM okviru, ne gura stranu. */
+  overflow-x: auto;
+}
+
+.cana-grafikon svg {
+  display: block;
+  width: 100%;
+  min-width: 320px;
+  height: auto;
+}
+
+/* Legenda je uvek tu za dve i vise serija — identitet ne sme da zavisi samo
+   od boje. */
+.cana-legenda {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: var(--cana-text-muted);
+  font-size: 0.7rem;
+}
+
+.cana-legenda li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cana-uzorak {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+}
+
+.cana-uzorak.prva { background: var(--domain-accent); }
+.cana-uzorak.druga { background: #8b95a8; }
+
+/* Mreza i osa su recesivni — podaci su ono sto se cita. */
+.cana-mreza {
+  stroke: rgba(148, 163, 184, 0.12);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.cana-osa-y {
+  fill: var(--cana-text-muted);
+  font-size: 9px;
+  text-anchor: end;
+}
+
+.cana-osa-x {
+  fill: var(--cana-text-muted);
+  font-size: 9px;
+  text-anchor: middle;
+}
+
+.cana-linija {
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.cana-linija.prva { stroke: var(--domain-accent); }
+.cana-linija.druga { stroke: #8b95a8; }
+
+.cana-stub.prva { fill: var(--domain-accent); }
+.cana-stub.druga { fill: #8b95a8; }
+
+.cana-nisan {
+  stroke: rgba(148, 163, 184, 0.5);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Meta za prelaz misem je siroka koliko razmak, ne koliko tacka. */
+.cana-meta {
+  fill: transparent;
+}
+
+.cana-ocitavanje {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 0;
+  color: var(--cana-text-muted);
+  font-size: 0.72rem;
+}
+
+.cana-ocitavanje strong {
+  color: var(--cana-text);
+  font-weight: 650;
+}
+
+
+/* ==========          USKO          ========== */
+
+@media (max-width: 700px) {
+  .cana-plocice {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+}
